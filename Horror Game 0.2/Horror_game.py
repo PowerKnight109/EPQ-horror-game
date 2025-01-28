@@ -7,17 +7,7 @@ from  parameters import v0, v, inv, items
 
 #Values are the stat you want changed, the amount it changes by, and the amount it changes by under DOOM
 
-#Player stats used to be stored as a list and as I only recently changed it to a class, most code still calls for list values.
-#List values so the rest of the code makes sense:
-#maxhealth = 0
-#health = 1
-#hunger = 2
-#sanity = 3
-#atk = 4
-#luck = 5
-#xp = 6
-# gold = 7
-#Accuracy and doom weren't added yet.
+
 class stats:
     def __init__(self, maxhealth, health, hunger, sanity, doom, atk, luck, accuracy, xp, gold):
         self.maxhealth = maxhealth
