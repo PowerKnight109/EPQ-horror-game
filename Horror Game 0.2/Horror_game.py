@@ -2,7 +2,7 @@ import random
 import time
 from encounters import eventable
 from  parameters import v0, v, inv, items
-#distance, Swait, Mwait, Lwait, smallchange, largechange, smallschange, largeschange, smallrestore, largerestore, smallhprestore, largehprestore
+
 
 
 #Values are the stat you want changed, the amount it changes by, and the amount it changes by under DOOM
