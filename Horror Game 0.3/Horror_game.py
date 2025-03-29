@@ -4,7 +4,6 @@ def intro():
     print("ETERNAL HUNGER")
     global playername
     playername = "a"
-    return playername
     #time.sleep(2)
     # playername = input("What is your name?\n")
     # print("You wake up")
