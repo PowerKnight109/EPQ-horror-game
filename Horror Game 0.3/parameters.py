@@ -1,13 +1,14 @@
 class misc:
-    def __init__(self, hasgun, stalking, distance):
+    def __init__(self, hasgun, stalking, distance, difficulty):
         self.hasgun = hasgun
         self.stalking = stalking
         self.distance = distance
+        self.difficulty = difficulty
 #hasgun = Determines whether to add ammo to the itempool
 #stalking = Determines whether the player is being stalked
 #distance = The players current distance and difficulty
 
-v0 = misc(False, -1, 0)
+misc = misc(False, -1, 0, 0)
 
 
 class paracelsus:
@@ -30,22 +31,25 @@ class paracelsus:
 #small/largehprestore = How much health restoring items should restore
 
 
-v = paracelsus(1, 1.5, 2, 10, 20, 1, 2, 30, 50, 3, 5)
+para = paracelsus(1, 1.5, 2, 10, 20, 1, 2, 30, 50, 3, 5)
 
 
-class inventory:
-    def __init__(self, food, bandage, pills, knives, acid, rbtfoot, roids, ammo, charm, effigy):
-        self.food = food
-        self.bandage = bandage
-        self.pills = pills
-        self.knives = knives
-        self.acid = acid
-        self.rbtfoot = rbtfoot
-        self.roids = roids
-        self.ammo = ammo
-        self.charm = charm
-        self.effigy = effigy
+
+
+
+# class inventory:
+#     def __init__(self, food, bandage, pills, knives, acid, rbtfoot, roids, ammo, charm, effigy):
+#         self.food = food
+#         self.bandage = bandage
+#         self.pills = pills
+#         self.knives = knives
+#         self.acid = acid
+#         self.rbtfoot = rbtfoot
+#         self.roids = roids
+#         self.ammo = ammo
+#         self.charm = charm
+#         self.effigy = effigy
 #Items get appended to the list when added to inventory, duplicates increase the value of the corresponding variable
 
-inv = inventory(5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-items = ["meat"]
+#inv = inventory(5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+#items = ["meat"]

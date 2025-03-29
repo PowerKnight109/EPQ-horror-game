@@ -1,4 +1,4 @@
-class playerstats:
+class stats:
     def __init__(self, name, maxhealth, health, hunger, sanity, doom, atk, luck, speed, accuracy, xp, gold, hitext, wintext, losetext, checkdesc ):
         self.maxhealth = maxhealth
         self.health = health
@@ -17,19 +17,26 @@ class playerstats:
         self.checkdesc = checkdesc
         self.name = name
 
-player = playerstats("You", 10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
-maxhealth = player.maxhealth
-health = player.health
-hunger = player.hunger
-sanity = player.sanity
-doom = player.doom
-atk = player.atk
-luck = player.luck
-speed = player.speed
-accuracy = player.accuracy
-xp = player.xp
-gold = player.gold
+class protag(stats):
+    from Horror_game import playername
+    def __init__(self, playername):
+        super().__init__(playername, 10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
+        inv = {
+            "meat":5,
+            "effigy":0,
+            "charm":0,
+            "roids":0,
+            "rbtfoot":0,
+            "acid":0,
+            "bullets":0,
+            "gun":False
 
+        }
+        self.inv = inv
+
+
+#player = protag(playername,10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
+player = protag()
 shadow = stats("???", 3, 3,0, 50, 80, 1, 0, 60, 80, 10, 0, "The creature lunges towards you!", "The creature laughs", "The shadowy creature disspates into nothingness", "The figure standing in front of me is not real\nThe figure standing in front of me is not real\nThe figure standing in front of me is not real")
 zombie = stats("Zombie", 1, 1, 1, 100, 0, 1, 0, 1, 60, 5, 1, "The zombie flails it's arms at you!", "The zombie bites down on you", "The zombie crumbles to dust", "The result of a failed ritual to harness Zath-Kopchyla's essence\n The host's soul was too weak to handle even a fraction of its power and shattered, leaving only a pathetic shambling husk behind")
 slime = stats("Slime", 3, 3, 1, 100, 0, 1, 0, 5, 70, 10, 0, "The slime bites down on you!", "The slime assimilates you", "The slime melts into a puddle", "The result of a failed ritual to harness Zath-Kopchyla's power\nThe host's body was too weak to handle even a fraction of the god's essence and broke down, leaving the soul to possess the melted pile of black sludge that remained")
