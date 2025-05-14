@@ -122,7 +122,7 @@ class shrinec(encounters):
                 time.sleep(para.Swait)
                 print("[Luck +" + str(a) + "]")
         elif shrine == "b":
-            if inv.food > 0:
+            if player.inv.food > 0:
                 print("How much food will you offer?")
                 a = int(input())
                 if a > player.inv["meat"]:
@@ -246,8 +246,8 @@ class drinkc(encounters):
                 time.sleep(para.Mwait)
                 print("Instead, blood flows down, coating your hands and feet")
                 time.sleep(para.Mwait)
-                print("[Sanity -" + str(para.v.smallchange) + "]")
-                player.sanity -= para.v.smallchange
+                print("[Sanity -" + str(para.smallchange) + "]")
+                player.sanity -= para.smallchange
         else:
             print("You decide to ignore it, the water isn't safe.")
             time.sleep(para.Mwait)
@@ -434,7 +434,7 @@ class altarc(encounters):
         time.sleep(para.Mwait)
         print("You hear voices calling to you, inviting you to join them")
         time.sleep(para.Lwait)
-        if skillcheck(player.luck, 50) == True:
+        if player.luck+random.randint(0,100) > 75 == True:
             print()
             print("You resist the voices and press on")
         else:
@@ -458,7 +458,7 @@ class mirrorc(encounters):
         time.sleep(para.Mwait)
         if player.sanity < 50:
             print("insane encounter: mimic")
-        elif skillcheck(player.luck, 70) == True:
+        elif player.luck+random.randint(0,100) > 30 == True:
             print("It's you")
         else:
             print("That's not you")

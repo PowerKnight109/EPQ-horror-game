@@ -28,10 +28,11 @@ class protag(stats):
 #player = protag(playername,10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
 player = protag({
                     "meat": 5,
-                    "bandages": 0,
-                    "effigy": 0,
-                    "charm": 0,
-                    "roids": 0,
+                    "pills": 1,
+                    "bandages": 1,
+                    "effigy": 1,
+                    "charm": 1,
+                    "roids": 1,
                     "rbtfoot": 0,
                     "acid": 0,
                     "bullets": 0,
@@ -45,16 +46,3 @@ batter = stats("Masked Man", 5, 5, 1, 100, 0, 1, 0, 50, 80, 20, 5, "The masked m
 
 #enemies = [shadow, zombie, slime, batter, tax, sorrow, gnasher, stalker, digger, crow, mimic, beelzebub, hunter, crawler, amalgam, cultist, angel, hydra, skinwalker, masked_leader, doll, terror, H.A.D]
 
-inv = {
-            "meat": 5,
-            "pills": 0,
-            "bandages": 0,
-            "effigy": 0,
-            "charm": 0,
-            "roids": 0,
-            "rbtfoot": 0,
-            "acid": 0,
-            "bullets": 0,
-            "gun": False
-
-        }

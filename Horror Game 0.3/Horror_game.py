@@ -48,23 +48,28 @@ def gameloop():
         print("Hunger:", player.hunger)
         print("Sanity:", player.sanity)
         print("press enter to step forward")
-        proceed = input("")
+        print("enter 'I' to access inventory")
+        proceed = input().lower()
 
+        if proceed == "i":
+            from invmenu import inventory
+            inventory()
 
-        #Event start
-        print("")
-        print("")
-        print("")
-        print("")
-        print("")
-        print("You venture forth into the murky alleyways")
-        from encounters import encounterpick
-        encounterpick()
+        else:
+            #Event start
+            print("")
+            print("")
+            print("")
+            print("")
+            print("")
+            print("You venture forth into the murky alleyways")
+            from encounters import encounterpick
+            encounterpick()
 
-        misc.distance += 1
-        if misc.distance > misc.difficulty:
-            misc.difficulty = misc.distance
-        player.hunger -= para.smallchange
+            misc.distance += 1
+            if misc.distance > misc.difficulty:
+                misc.difficulty = misc.distance
+            player.hunger -= para.smallchange
 
 
 def ending():
