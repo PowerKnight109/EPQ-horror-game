@@ -20,28 +20,41 @@ class stats:
 
 
 class protag(stats):
-    def __init__(self):
-        super().__init__("You", 10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
-    def inventory(self):
-        inv = {
-            "meat":5,
-            "effigy":0,
-            "charm":0,
-            "roids":0,
-            "rbtfoot":0,
-            "acid":0,
-            "bullets":0,
-            "gun":False
-
-        }
+    def __init__(self, inv):
         self.inv = inv
+        super().__init__("You", 10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
 
 
 #player = protag(playername,10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
-player = protag()
+player = protag({
+                    "meat": 5,
+                    "bandages": 0,
+                    "effigy": 0,
+                    "charm": 0,
+                    "roids": 0,
+                    "rbtfoot": 0,
+                    "acid": 0,
+                    "bullets": 0,
+                    "gun": False
+
+                })
 shadow = stats("???", 3, 3,0, 50, 80, 1, 0, 60, 80, 10, 0, "The creature lunges towards you!", "The creature laughs", "The shadowy creature disspates into nothingness", "The figure standing in front of me is not real\nThe figure standing in front of me is not real\nThe figure standing in front of me is not real")
 zombie = stats("Zombie", 1, 1, 1, 100, 0, 1, 0, 1, 60, 5, 1, "The zombie flails it's arms at you!", "The zombie bites down on you", "The zombie crumbles to dust", "The result of a failed ritual to harness Zath-Kopchyla's essence\n The host's soul was too weak to handle even a fraction of its power and shattered, leaving only a pathetic shambling husk behind")
 slime = stats("Slime", 3, 3, 1, 100, 0, 1, 0, 5, 70, 10, 0, "The slime bites down on you!", "The slime assimilates you", "The slime melts into a puddle", "The result of a failed ritual to harness Zath-Kopchyla's power\nThe host's body was too weak to handle even a fraction of the god's essence and broke down, leaving the soul to possess the melted pile of black sludge that remained")
 batter = stats("Masked Man", 5, 5, 1, 100, 0, 1, 0, 50, 80, 20, 5, "The masked man swings his bat at you!", "You are beaten to death", "The masked man collapses, defeated", "The influence of Zath-Kopchyla has infected people's minds, making them extremely aggressive\nGangs of people have begun wearing masks, patrolling the streets with baseball bats in search of any potential victims to hunt.")
 
 #enemies = [shadow, zombie, slime, batter, tax, sorrow, gnasher, stalker, digger, crow, mimic, beelzebub, hunter, crawler, amalgam, cultist, angel, hydra, skinwalker, masked_leader, doll, terror, H.A.D]
+
+inv = {
+            "meat": 5,
+            "pills": 0,
+            "bandages": 0,
+            "effigy": 0,
+            "charm": 0,
+            "roids": 0,
+            "rbtfoot": 0,
+            "acid": 0,
+            "bullets": 0,
+            "gun": False
+
+        }

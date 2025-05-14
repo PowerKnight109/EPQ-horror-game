@@ -32,73 +32,73 @@ class Nsaneflavourc(encounters):
 class foodfindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "meat")
-    def text(self, player):
+    def text(self):
         print("You found some meat!")
         player.inv["meat"] +=1
 
 class pillfindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "Nsaneflavour")
-    def text(self, player):
+    def text(self):
         print("You found some pills!")
         player.inv["pills"] += 1
 
 class bandagefindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "bandages")
-    def text(self, player):
+    def text(self):
         print("You found some bandages!")
         player.inv["bandages"] += 1
 
 class goldfindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "goldfind")
-    def text(self, player):
+    def text(self):
         print("You found some gold!")
         player.gold += 1
 
 class itemfindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "itemfind")
-    def text(self, player):
+    def text(self):
         print("This function doesn't currently work.")
         print("I'll get back to it later")
 
 class slimec(encounters):
     def __init__(self):
         super().__init__(2, 101, "slime")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: slime")
 
 class zombiec(encounters):
     def __init__(self):
         super().__init__(2, 101, "zombie")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: zombie")
 
 class shadowc(encounters):
     def __init__(self):
         super().__init__(2, 50, "shadow")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: shadow")
 
 class lootcorpsec(encounters):
     def __init__(self):
         super().__init__(2, 101, "lootcorpse")
-    def text(self, para, player):
+    def text(self):
         print("corpse looting: ignore, gain materials at cost of sanity or fight zombie ")
         print("At high diff, fight skinwalker")
 
 class lore1c(encounters):
     def __init__(self):
         super().__init__(3, 101, "lore1")
-    def text(self, para):
+    def text(self):
         print("lore1: paper about energy in sea")
 
 class shrinec(encounters):
     def __init__(self):
         super().__init__(3, 101, "shrine")
-    def text(self, player, para):
+    def text(self):
         print("You find a shrine to a local diety")
         time.sleep(para.Mwait)
         print("A: Offer some money")
@@ -125,12 +125,12 @@ class shrinec(encounters):
             if inv.food > 0:
                 print("How much food will you offer?")
                 a = int(input())
-                if a > inv.food:
+                if a > player.inv["meat"]:
                     print("You don't have enough food!")
                 elif a <= 0:
                     print("You change your mind")
                 else:
-                    inv.food -= a
+                    player.inv["meat"] -= a
                     player.luck += a
                     print("You offer some food to the shrine")
                     time.sleep(para.Mwait)
@@ -155,7 +155,7 @@ class shrinec(encounters):
 class konamic(encounters):
     def __init__(self):
         super().__init__(3, 101, "c-ritual")
-    def text(self, para, player):
+    def text(self):
         print("You see some writing etched onto a wall")
         time.sleep(para.Mwait)
         print('It reads "^^vv<><>BA"')
@@ -194,8 +194,10 @@ class konamic(encounters):
                     if dance == "A":
                         print("You completed the ritual")
                         time.sleep(para.Swait)
-                        print("D00M -" + str(para.smallschange) + "]")
-                        Doom -= para.v.smallchange
+                        # print("D00M -" + str(para.smallschange) + "]")
+                        # Doom -= para.v.smallchange
+                        print("[Luck +"+para.smallschange+"]")
+                        player.luck += para.smallschange
 
                     else:
                         fail = True
@@ -205,8 +207,10 @@ class konamic(encounters):
             if fail == True:
                 print("You failed the ritual")
                 time.sleep(para.Swait)
-                print("D00M +" + str(para.smallschange) + "]")
-                Doom += para.smallchange
+                # print("D00M +" + str(para.smallschange) + "]")
+                # Doom += para.smallchange
+                print("[Luck -" + str(para.smallschange) + "]")
+                player.luck -= para.smallschange
 
 
         else:
@@ -217,7 +221,7 @@ class konamic(encounters):
 class drinkc(encounters):
     def __init__(self):
         super().__init__(3, 101, "drink")
-    def text(self, para, player):
+    def text(self):
         print("You have been walking for a long time, and you find yourself in dire need of water")
         time.sleep(para.Mwait)
         print("Ahead of you, you spot an old faucet connected to a wall.")
@@ -230,13 +234,13 @@ class drinkc(encounters):
         if x == "a":
             print("You turn the faucet")
             time.sleep(para.Lwait)
-            if random.randint(0, 100) + player.luck - (player.doom/10) > 50:
+            if random.randint(0, 100) + player.luck > 25:
                 print("Cool, refreshing water flows down the tap, revitalising your body and mind")
                 time.sleep(para.Mwait)
                 print("[Sanity +" + str(para.v.smallchange) + "]")
                 player.sanity += para.v.smallchange
-                if sanity > 100:
-                    sanity = 100
+                if player.sanity > 100:
+                    player.sanity = 100
             else:
                 print("The faucet turns on, but it doesn't produce water")
                 time.sleep(para.Mwait)
@@ -255,74 +259,74 @@ class drinkc(encounters):
 class deersacc(encounters):
     def __init__(self):
         super().__init__(4, 101, "deersac")
-    def text(self, para, player):
+    def text(self):
         print("See fawn strapped to altar, can kill it to reduce doom at cost of sanity")
 
 class batterc(encounters):
     def __init__(self):
         super().__init__(5, 101, "batter")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: batter")
 
 class shopc(encounters):
     def __init__(self):
         super().__init__(6, 101, "shop")
-    def text(self, para, player):
+    def text(self):
         print("shop")
 
 class gnasherc(encounters):
     def __init__(self):
         super().__init__(7, 101, "gnasher")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: gnasher")
 
 class sorrowc(encounters):
     def __init__(self):
         super().__init__(10, 101, "sorrow")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: sorrow")
 
 class crowc(encounters):
     def __init__(self):
         super().__init__(13, 101, "crow")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: crow")
 
 class tunnelchasec(encounters):
     def __init__(self):
         super().__init__(15, 101, "tunnelchase")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: digger")
 
 class lore2c(encounters):
     def __init__(self):
         super().__init__(15, 101, "lore2")
-    def text(self, para, player):
+    def text(self):
         print("Scientist research paper")
 
 class stalkerc(encounters):
     def __init__(self):
         super().__init__(15, 101, "tunnelchase")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: stalker")
 
 class beelzebubc(encounters):
     def __init__(self):
         super().__init__(15, 50, "beelzebub")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: glutton")
 
 class blackcatc(encounters):
     def __init__(self):
         super().__init__(15, 101, "blackcat")
-    def text(self, para, player):
+    def text(self):
         print("eat cat to lose sanity for hunger or pet cat for luck decrease")
         print("If sanity is low and pet cat, fight cheshire")
 
 class restc(encounters):
     def __init__(self):
         super().__init__(15, 101, "rest")
-    def text(self, para, player):
+    def text(self):
         print("Come to place to rest")
         print("A: press on at sanity decrease")
         print("B sleep")
@@ -337,19 +341,19 @@ class restc(encounters):
 class muggingc(encounters):
     def __init__(self):
         super().__init__(15, 101, "mugging")
-    def text(self, para, player):
+    def text(self):
         print("Give all money or fight 3 consecutive masked men")
 
 class mansionc(encounters):
     def __init__(self):
         super().__init__(15, 101, "mansion")
-    def text(self, para, player):
+    def text(self):
         print("Stay at creepy guy's mansion")
 
 class doctorc(encounters):
     def __init__(self):
         super().__init__(16, 101, "doctor")
-    def text(self, para, player):
+    def text(self):
         print("You encounter a man in a bloodstained doctor's uniform")
         time.sleep(para.Mwait)
         print(
@@ -406,26 +410,26 @@ class doctorc(encounters):
 class sacrificec(encounters):
     def __init__(self):
         super().__init__(16, 101, "sacrifice")
-    def text(self, para, player):
+    def text(self):
         print("Sacrifice health for statboost/lower doom")
 
 class witchc(encounters):
     def __init__(self):
         super().__init__(16, 101, "witch")
-    def text(self, para, player):
+    def text(self):
         print("Offered a potion which will restore/harm or raise/lower a stat")
 
 class cultc(encounters):
     def __init__(self):
         super().__init__(17, 101, "cult")
-    def text(self, para, player):
+    def text(self):
         print("Perform ritual with cult to raise doom or fight members consecutively")
         print("If doom is high, cultists get a stat increase")
 
 class altarc(encounters):
     def __init__(self):
         super().__init__(17, 101, "altar")
-    def text(self, para, player):
+    def text(self):
         print("You come across a mysterious altar")
         time.sleep(para.Mwait)
         print("You hear voices calling to you, inviting you to join them")
@@ -443,16 +447,16 @@ class altarc(encounters):
 class crawlerc(encounters):
     def __init__(self):
         super().__init__(17, 101, "crawler")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: crawler")
 
 class mirrorc(encounters):
     def __init__(self):
         super().__init__(20, 101, "mirror")
-    def text(self, para, player):
+    def text(self):
         print("You look in the mirror")
         time.sleep(para.Mwait)
-        if sanity < 50:
+        if player.sanity < 50:
             print("insane encounter: mimic")
         elif skillcheck(player.luck, 70) == True:
             print("It's you")
@@ -465,37 +469,37 @@ class mirrorc(encounters):
 class hunterc(encounters):
     def __init__(self):
         super().__init__(20, 101, "hunter")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: hunter")
 
 class mimicc(encounters):
     def __init__(self):
         super().__init__(17, 101, "mimic")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: mimic")
 
 class lore3c(encounters):
     def __init__(self):
         super().__init__(20, 101, "lore3")
-    def text(self, para):
+    def text(self):
         print("cult room")
 
 class trapc(encounters):
     def __init__(self):
         super().__init__(25, 101, "trap")
-    def text(self, para, player):
+    def text(self):
         print("Chance for item or take damage")
 
 class fleshortcutc(encounters):
     def __init__(self):
         super().__init__(25, 101, "fleshortcut")
-    def text(self, para, player):
+    def text(self):
         print("fleshortcut")
 
 class amigarac(encounters):
     def __init__(self):
         super().__init__(30, 101, "amigara")
-    def text(self, para, player):
+    def text(self):
         print("go through crack, gain distance but lose health, max sanity and hunger to 50 and gain attack")
 
 class holesc(encounters):
@@ -536,7 +540,7 @@ class gods_callingc(encounters):
         t_end = time.time() + 1
         while time.time() < t_end:
             print("S̷̗̪̆͗U̷͓̚͝F̷̲̒F̷̩͕̄̕Ḙ̷̡͠R̶͖̂ ̸̹̗̂F̷̮̦͝O̷̰̎R̴̡̖̃ ̴̳̓̓Ṁ̴̹͍E̷̠͌ͅ")
-        if skillcheck(player.luck, 50) == True:
+        if random.randint(0,100)+ player.luck > 75:
             print("You cast  them out of your head and press on")
             time.sleep(para.Mwait)
             print("You won't let them try to control you anymore")
@@ -546,8 +550,8 @@ class gods_callingc(encounters):
         else:
             print("You shakily draw a knife and plunge it into your stomach")
             time.sleep(para.Mwait)
-            print("[Health -" + str(atk) + "]")
-            player.health -= atk
+            print("[Health -" + str(player.atk) + "]")
+            player.health -= player.atk
 
 class maskedbasec(encounters):
     def __init__(self):
@@ -652,4 +656,4 @@ def encounterpick():
         if misc.difficulty >= eventable[i].diff and player.sanity <= eventable[i].san:
             validevents.append(eventable[i])
     event = validevents[random.randint(0, len(validevents) - 1)]
-    return (event.text)
+    return (event.text())

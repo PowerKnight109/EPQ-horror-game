@@ -8,7 +8,7 @@ class misc:
 #stalking = Determines whether the player is being stalked
 #distance = The players current distance and difficulty
 
-misc = misc(False, -1, 1, 1)
+misc = misc(False, -1, 0, 1)
 
 
 class paracelsus:
@@ -53,3 +53,5 @@ para = paracelsus(1, 1.5, 2, 10, 20, 1, 2, 30, 50, 3, 5)
 
 #inv = inventory(5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 #items = ["meat"]
+
+

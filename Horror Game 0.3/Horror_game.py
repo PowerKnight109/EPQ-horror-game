@@ -1,3 +1,5 @@
+import time
+from parameters import para, misc
 def intro():
     import time
     from parameters import para
@@ -15,15 +17,13 @@ def intro():
     # Will have loop end at max doom later
 
 
-
+from character_sheets import player
 
 
 def gameloop():
     import time
     import random
     #from encounters import eventable
-    from parameters import para, misc
-    from character_sheets import player
     # Values are the stat you want changed, the amount it changes by, and the amount it changes by under DOOM
     validevents = []
 
@@ -71,14 +71,14 @@ def ending():
     if misc.distance >= 50:
         print("You made it!")
 
-    elif player[2] <= 0:
+    elif player.hunger <= 0:
         print("Your hunger has grown too great and cannot be ignored any longer")
         time.sleep(1)
         print("Collapsing onto the ground, the world grows distant as you starve to death")
         time.sleep(1)
         print("GAME OVER")
 
-    elif player[3] <= 0:
+    elif player.hunger <= 0:
         print("You have completely gone insane")
         time.sleep(1)
         print("Shadows and hallucinations dance in front of you as reality crumbles")
