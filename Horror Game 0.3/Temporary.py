@@ -8,7 +8,7 @@ class encounters:
         # fight = Whether event is a combat encounter or not (will be used when an event outcome leads to random fight)
         # name = name of encounter
 
-k
+#
 class flavourc(encounters):
     def __init__(self):
         super().__init__(1, 101, "flavour")
