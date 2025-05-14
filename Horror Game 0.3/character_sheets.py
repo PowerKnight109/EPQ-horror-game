@@ -17,10 +17,12 @@ class stats:
         self.checkdesc = checkdesc
         self.name = name
 
+
+
 class protag(stats):
-    from Horror_game import playername
-    def __init__(self, playername):
-        super().__init__(playername, 10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
+    def __init__(self):
+        super().__init__("You", 10, 10, 100, 100, 0, 1, 0, 50, 80, 0, 0, "You attack!", "You won!", "You lost!", "It's you")
+    def inventory(self):
         inv = {
             "meat":5,
             "effigy":0,

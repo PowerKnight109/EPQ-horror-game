@@ -8,7 +8,7 @@ class misc:
 #stalking = Determines whether the player is being stalked
 #distance = The players current distance and difficulty
 
-misc = misc(False, -1, 0, 0)
+misc = misc(False, -1, 1, 1)
 
 
 class paracelsus:

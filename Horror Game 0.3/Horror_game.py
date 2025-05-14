@@ -2,10 +2,6 @@ def intro():
     import time
     from parameters import para
     print("ETERNAL HUNGER")
-    global playername
-    playername = "a"
-    #time.sleep(2)
-    # playername = input("What is your name?\n")
     # print("You wake up")
     # time.sleep(para.Lwait)
     # print("You sit in a dingy, rot-infested room")
@@ -51,6 +47,8 @@ def gameloop():
         print("Health:", str(player.health) + "/" + str(player.maxhealth))
         print("Hunger:", player.hunger)
         print("Sanity:", player.sanity)
+        print("press enter to step forward")
+        proceed = input("")
 
 
         #Event start
@@ -60,8 +58,8 @@ def gameloop():
         print("")
         print("")
         print("You venture forth into the murky alleyways")
-        from encounters import encounterpick, eventable, validevents
-        print(encounterpick(eventable, validevents))
+        from encounters import encounterpick
+        encounterpick()
 
         misc.distance += 1
         if misc.distance > misc.difficulty:
