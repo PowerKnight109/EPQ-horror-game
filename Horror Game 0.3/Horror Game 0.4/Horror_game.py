@@ -1,8 +1,6 @@
 import time
 from parameters import para, misc
 def intro():
-    import time
-    from parameters import para
     print("ETERNAL HUNGER")
     # print("You wake up")
     # time.sleep(para.Lwait)
