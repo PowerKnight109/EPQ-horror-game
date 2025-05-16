@@ -12,7 +12,7 @@ def inventory():
         if hasitems == False:
             print("You have no items")
             break
-
+#
         else:
             from parameters import para
             import time

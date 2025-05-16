@@ -902,3 +902,4 @@ def encounterpick(event):
     event = validevents[random.randint(0, len(validevents) - 1)]
     event.text()
     return (event)
+#

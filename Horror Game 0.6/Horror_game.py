@@ -95,6 +95,6 @@ def ending():
         print("From this day on, your body no longer belongs to you.")
         time.sleep(1)
         print("GAME OVER")
-
+#
 
     print("Final score:", misc.distance)

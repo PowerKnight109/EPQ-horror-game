@@ -30,7 +30,7 @@ class paracelsus:
 #small/largerestore = How much sanity or hunger restoring items should restore
 #small/largehprestore = How much health restoring items should restore
 
-
+#
 para = paracelsus(1, 1.5, 2, 10, 20, 1, 2, 30, 50, 3, 5)
 
 
