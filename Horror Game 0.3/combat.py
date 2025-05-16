@@ -3,19 +3,18 @@
 
 # Allows random function to be shortened
 
-from character_sheets import zombie
+#from character_sheets import zombie
+import time
+import random
+from character_sheets import player
+from parameters import para
 
 
 def fight(enemy):
-    import time
-    import random
-    from character_sheets import player
-    from parameters import para, items
-
     def attack(assailant, victim):
         #assailant = person attacking
         #victim = person being hit
-        print("assailant.hitext")
+        print(assailant.hitext)
         if random.randint(0,100) - assailant.luck + victim.luck <= assailant.accuracy:
             #check to see if attack hits
             if random.randint(0,100) - assailant.luck + victim.luck <= 5:
@@ -33,7 +32,6 @@ def fight(enemy):
 
 
     # player turn starts here
-    print("a", enemy.name, "approaches!")
     turns = 0
 
     while enemy.health > 0 and player.health > 0:
@@ -79,14 +77,16 @@ def fight(enemy):
         #   continue
 
         elif action == "C":
-            if items(pitem) == True:
+            x = player
+            from invmenu import inventory
+            inventory()
+            if player == x:
                 continue
-            print(bullet)
 
         elif action == "D":
             print("You tried to run away")
             time.sleep(2)
-            a = random.randint(player.speed+ enemy.speed) - luck
+            a = random.randint(0, player.speed+ enemy.speed) - player.luck
             if a > player.speed:
                 print("But failed!")
 
@@ -99,33 +99,33 @@ def fight(enemy):
         time.sleep(para.Mwait)
         print(attack(enemy, player))
 
-    if enemy.health <= 0 or peace == True:
-        time.sleep(player.Swait)
+    if enemy.health <= 0:
+        time.sleep(para.Swait)
         print("The", enemy.name, "was defeated!")
-        time.sleep(player.Swait)
+        time.sleep(para.Swait)
         print("You gained", enemy.gold, "gold from the", enemy.name + ".")
         player.gold += enemy.gold
         time.sleep(para.Swait)
         print("You gained", enemy.xp, "Experience Points.")
-        xp = enemy.xp
-        time.sleep(v.Lwait)
-        print("congratulations! You won. Unfortunately, this is the end of the demo for now.")
+        player.xp += enemy.xp
+        time.sleep(para.Lwait)
+        enemy.health = enemy.maxhealth
 
-    else:
+    elif player.health <=0:
         time.sleep(1)
-        print("GAME OVER")
+        print(enemy.wintext)
         time.sleep(1.5)
 
 
 
-print(
-    "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
-print(
-    "-------------------------------------------------------------------------------------BATTLE START!---------------------------------------------------------------------------------")
-print(
-    "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+# print(
+#     "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+# print(
+#     "-------------------------------------------------------------------------------------BATTLE START!---------------------------------------------------------------------------------")
+# print(
+#     "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
 time.sleep(para.Swait)
-print(fight(zombie))
+#print(fight(zombie))
 
 # while True:
 #     c =  int(input("a"))

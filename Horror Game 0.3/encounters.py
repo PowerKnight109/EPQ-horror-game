@@ -2,6 +2,7 @@ from character_sheets import player
 from parameters import para, misc
 import time
 import random
+from combat import fight
 
 class encounters:
     def __init__(self, diff, san, name):
@@ -61,33 +62,88 @@ class itemfindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "itemfind")
     def text(self):
-        print("This function doesn't currently work.")
-        print("I'll get back to it later")
+        from invmenu import words
+        new = random.randint(0, len(words) - 5)
+        print("You found some", words[new])
+        player.inv[words[new]] += 1
+        time.sleep(para.Mwait)
 
 class slimec(encounters):
     def __init__(self):
         super().__init__(2, 101, "slime")
     def text(self):
-        print("Combat encounter: slime")
+        print("A slime drips down")
+        from character_sheets import slime
+        time.sleep(para.Mwait)
+        fight(slime)
 
 class zombiec(encounters):
     def __init__(self):
         super().__init__(2, 101, "zombie")
     def text(self):
-        print("Combat encounter: zombie")
+        print("You run into a zombie!")
+        time.sleep(para.Mwait)
+        from character_sheets import zombie
+        fight(zombie)
 
 class shadowc(encounters):
     def __init__(self):
         super().__init__(2, 50, "shadow")
     def text(self):
         print("Combat encounter: shadow")
+        from character_sheets import shadow
+        fight(shadow)
 
 class lootcorpsec(encounters):
     def __init__(self):
         super().__init__(2, 101, "lootcorpse")
     def text(self):
-        print("corpse looting: ignore, gain materials at cost of sanity or fight zombie ")
-        print("At high diff, fight skinwalker")
+        print("You find a corpse lying on the ground.")
+        time.sleep(para.Mwait)
+        print("It may have valuable items for your survival.")
+        time.sleep(para.Swait)
+        print("A: loot the corpse\nB: consume the corpse\nC: leave")
+        choice = input().lower()
+        if choice == "c":
+            print("You aren't going to risk it")
+        else:
+            if random.randint(1, 100) + player.luck > 25 - (misc.difficulty / 10):
+                if choice == "a":
+                    print("You loot the corpse for items")
+                    time.sleep(para.Mwait)
+                    from invmenu import words
+                    new = random.randint(0, len(words)-5)
+                    print("You found some", words[new])
+                    player.inv[words[new]] +=1
+                    time.sleep(para.Mwait)
+                    print("You can't get the image of their lifeless face out of your head")
+                    time.sleep(para.Mwait)
+                    print("[Sanity -"+str(para.smallchange)+"]")
+                    player.sanity -= para.smallchange
+
+                elif choice == "b":
+                    print("Are you really going to resort to cannibalism?")
+                    time.sleep(para.Mwait)
+                    print("Well, you can't be picky in this world")
+                    time.sleep(para.Mwait)
+                    print("You close you eyes and sink your teeth in, forcing each bite down your throat")
+                    time.sleep(para.Mwait)
+                    print("[Sanity -"+str(para.largechange)+"]")
+                    player.sanity -= para.largechange
+
+            else:
+                print("The corpse got up and attacked!")
+                time.sleep(para.Mwait)
+                if misc.difficulty < 35:
+                    from character_sheets import zombie
+                    fight(zombie)
+                else:
+                    from character_sheets import skinwalker
+                    fight(skinwalker)
+
+
+
+
 
 class lore1c(encounters):
     def __init__(self):
@@ -237,8 +293,8 @@ class drinkc(encounters):
             if random.randint(0, 100) + player.luck > 25:
                 print("Cool, refreshing water flows down the tap, revitalising your body and mind")
                 time.sleep(para.Mwait)
-                print("[Sanity +" + str(para.v.smallchange) + "]")
-                player.sanity += para.v.smallchange
+                print("[Sanity +" + str(para.smallchange) + "]")
+                player.sanity += para.smallchange
                 if player.sanity > 100:
                     player.sanity = 100
             else:
@@ -266,13 +322,49 @@ class batterc(encounters):
     def __init__(self):
         super().__init__(5, 101, "batter")
     def text(self):
-        print("Combat encounter: batter")
+        print("A masked man wielding a baseball bat approaches you")
+        time.sleep(para.Mwait)
+        from character_sheets import batter
+        fight(batter)
 
 class shopc(encounters):
     def __init__(self):
         super().__init__(6, 101, "shop")
     def text(self):
-        print("shop")
+        print("You enter a dingy warehouse.")
+        time.sleep(para.Swait)
+        print("Chains are strung up all over the walls and ceiling")
+        time.sleep(para.Mwait)
+        print("In the center of the room, a woman hangs down over a table of items, her limbs bound by several layers of shackles")
+        time.sleep(para.Mwait)
+        print("Her eyes widen as they fix their gaze on you")
+        time.sleep(para.Swait)
+        print("PlEaSsSse, FeEl FrEe To BrOwSe My WaReSsS!")
+        time.sleep(para.Swait)
+        print("A: shop\nB: leave")
+        x = input().lower()
+        if x == "a":
+            while True:
+                print("WhAt WoUlD yOu LiKe To PuRcHaSsSeE?")
+                time.sleep(para.Swait)
+                print("you have", player.gold, "gold")
+                print("A: meat(1G)\nB: pills(2G)\nC: bandages(2G)\nD: effigy(0G)\nE: charm(3G)\nF: steroids(5G)")
+                print("type the name of the item you want to purchase")
+                browse = input().lower()
+                from invmenu import words
+                prices = [1, 2, 2, 0, 3, 5]
+                if browse in words and prices[words.index(browse)] > player.gold:
+                    print("YoU DoN't HaVe EnOuGhH!")
+                elif browse in words:
+                    print("You purchased the", browse)
+                    print("[Gold -"+str(prices[words.index(browse)])+"]")
+                    player.gold -= prices[words.index(browse)]
+                    player.inv[browse] += 1
+                else:
+                    break
+
+        print("CoMe AgAiNn SsOoNn!")
+
 
 class gnasherc(encounters):
     def __init__(self):

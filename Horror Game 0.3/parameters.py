@@ -19,7 +19,7 @@ class paracelsus:
         self.smallchange = smallchange
         self.largechange = largechange
         self.smallschange = smallschange
-        self.largechange = largeschange
+        self.largeschange = largeschange
         self.smallrestore = smallrestore
         self.largerestore = largerestore
         self.smallhprestore = smallhprestore
