@@ -4,12 +4,12 @@ import time
 import random
 from combat import fight
 
-def restore(statname, stat, value, max):
-    x = stat
-    stat += value
-    if stat > max:
-        stat = max
-    print("["+statname,"+"+str(stat-x))
+# def restore(statname, stat, value, max):
+#     x = stat
+#     stat += value
+#     if stat > max:
+#         stat = max
+#     print("["+statname,"+"+str(stat-x)+"]")
 
 class encounters:
     def __init__(self, diff, san, name):
@@ -143,6 +143,7 @@ class zombiec(encounters):
             time.sleep(para.Swait)
             print("[Health -"+str(para.smallschange)+"]")
             player.health -= para.smallschange
+            time.sleep(para.Swait)
             battle = True
         elif x == "c":
             print("You easily get away from the creature")
@@ -177,8 +178,14 @@ class zombiec(encounters):
                             time.sleep(para.Mwait)
                             print("Your stomach is satisfied, but your conscience isn't")
                             time.sleep(para.Mwait)
-                            restore("Hunger", player.hunger, para.largerestore, 100)
+                            #restore("Hunger", player.hunger,  para.largerestore, 100)
+                            a = player.hunger
+                            player.hunger += para.largerestore
+                            if player.hunger > 100:
+                                player.hunger = 100
+                            print("[Hunger restored by", str(player.hunger - a) + "]\n")
                             print("[Sanity -"+str(para.largechange)+"]")
+                            player.sanity -= para.largechange
 
                     else:
                         print("The zombie starts to move again!")
@@ -340,7 +347,7 @@ class konamic(encounters):
             for i in range(25):
                 print("\n")
             for i in range(8):
-                dance = input("Please enter the " + codewords[i] + " move of the ritual\n")
+                dance = input("Please enter the " + codewords[i] + " move of the ritual\n").lower()
 
                 if dance == code[i]:
                     continue
@@ -351,18 +358,18 @@ class konamic(encounters):
                 print("Is that all?")
                 time.sleep(para.Swait)
                 print("A: Yes")
-                dance = input("B: No\n")
-                if dance == "B":
+                dance = input("B: No\n").lower()
+                if dance == "b":
                     print("What about now?")
                     time.sleep(para.Swait)
                     print("A: Yes")
-                    dance = input("B: No\n")
-                    if dance == "A":
+                    dance = input("B: No\n").lower()
+                    if dance == "a":
                         print("You completed the ritual")
                         time.sleep(para.Swait)
                         # print("D00M -" + str(para.smallschange) + "]")
                         # Doom -= para.v.smallchange
-                        print("[Luck +"+para.smallschange+"]")
+                        print("[Luck +"+str(para.smallschange)+"]")
                         player.luck += para.smallschange
 
                     else:
@@ -426,7 +433,45 @@ class deersacc(encounters):
     def __init__(self):
         super().__init__(4, 101, "deersac")
     def text(self):
-        print("See fawn strapped to altar, can kill it to reduce doom at cost of sanity")
+        print("You see a young fawn strapped to an altar")
+        time.sleep(para.Mwait)
+        print("Was there some sort of sacrifice here?")
+        time.sleep(para.Mwait)
+        x = input("A: Complete the sacrifice\nB: Consume\n C: Free the deer\n").lower()
+        if x == "a":
+            print("You raise your dagger and plunge it into the deer's heart")
+            time.sleep(para.Mwait)
+            print("The fawn's blood flows freely down the altar")
+            print("The gods are pleased with you, but at what cost")
+            time.sleep(para.Mwait)
+            print("[Luck +"+str(para.largeschange)+"]")
+            print("[Sanity -" + str(para.smallchange) + "]")
+            player.luck += para.largeschange
+            player.sanity -= para.smallchange
+
+        elif x == "b":
+            print("You raise your dagger and plunge it into the fawn's heart")
+            time.sleep(para.Mwait)
+            print("But before the deer's blood can flow down the altar, you snatch it up and greedily dig in")
+            time.sleep(para.Mwait)
+            print("It had been too long since you had last eaten a normal animal, you had nearly forgotten the taste")
+            time.sleep(para.Swait)
+            a = player.hunger
+            player.hunger += para.smallrestore
+            if player.hunger > 100:
+                player.hunger = 100
+            print("[Hunger restored by", str(player.hunger - a) + "]")
+            print("[Sanity -"+str(para.smallchange)+"]")
+            player.sanity -= para.smallchange
+
+        elif x == "c":
+            print("You undo the baby deer's bindings and let it walk free")
+            time.sleep(para.Mwait)
+            print("It soothes your heart that something so innocent could exist in a world so cruel")
+            time.sleep(para.Swait)
+            print("[Sanity +"+str(para.smallrestore)+"]")
+
+
 
 class batterc(encounters):
     def __init__(self):
@@ -438,45 +483,101 @@ class batterc(encounters):
         time.sleep(para.Mwait)
         print("It's clear to you that this man may not have the most savoury intentions.")
         time.sleep(para.Swait)
-        print("Do you:\nA: Attack\nB: Hide\nC: Run")
-        print("..@@@@@@....@.@@@@@@...........@@......................@@@@@....@..@@...........\n.....@@......@@@@@.......................................@@@@@..................\n........@...@@@@@.........................................@@@@@.....@........@@.\n...........@@@@@............................................@@@@@...@....@@.@@..\n..........@@@@@..............................................@@@@@....@@.@@.....\n.........@@@@@.......................................@........@@@@@@@@@@........\n.........@@@@....................................@@@@@.........@@@@@............\n........@@@@.......@@@@@.......................@@@@@@@@.........@@@@@...........\n........@@@.......@@@@@@@......................@@@@@@@@.@........@@@@...........\n.......@@@@.......@@@@@@@@@...................@@@@@@@@@@@.......................\n.......@@@@......@@@@@@@@@@@..................@@@@@@@@@@@.........@.@@@.........\n.......@..........@@@@@@@@@@..................@@@@@@@@@@@.......@.@.............\n.@.@@@@..........@@@@@@@@@@@..................@@@@@@@@@@@.........@..@@.........\n.@@@@..@.........@@@@@@@@@@@@.................@@@@@@@@@@@.........@@@@@........@\n.@@@@.@@@........@@@@@@@@@@@@.................@@@@@@@@@...........@@@@@@.....@@@\n.@@@@.@@@@@.......@@@@@@@@@@@.................@@@@@@@@.@@.........@@@@@@...@@@..\n..@@..@@@@@........@@@@@@@@@@.........@.......@@@@@@@.........@@..@@@@@..@@@....\n.@@@@..@@@@........@..@@@@@@@.....@@@@@@.@@.....@@@@@@.......@...@@@@@@@@@.....@\n.@@@@@.@@@@...........@.@@@......@@@@@@@@@.@................@@@@.@@@@@@@@....@..\n..@@@@.@@@@..@@.................@@@@@@@@@@@@@....@@........@@@@@@@@@@@@.@.......\n.@@@@@.@@@@.@@@@@.......@@@@....@@@@@@@@@@@@....@@@@.........@@@.@@@@@@@@@......\n.@@@@...@@@@.@@@..@......@@@.....@@@@@@@@@@@......@...@@@@...@@..@@@@.@@@@@.....\n.@@@@@.@@@@@.@@....@@.....@........@@@@@@@........@.@@@.....@@@.@@@@..@...@@@@@@\n.@@@@@.@.@@@@@@@...@@@@@............................@.....@@@@@@@@@@..@...@.....\n..@@@@@@.@@@@@@@@......@.@@@@@@.........@@@@@@@@.........@@@@@@@@@@@@@@.@.@.....\n..@@@@.@.@@@@@@@@@@@.........@@.@@@@@@@@@...............@@.@@..@@@@@.....@.@@@..\n..@@@@.@.@@@@@@@@@@@..................@...............@@@...@.@@@@@..........@.@\n.@@@@@@..@@@@@.@@..@@@@.............................@@@@..@..@@@@@.............\n...@@@@@@..@@@@@.@..@@@@@........................@.@@@@...@..@@@@.@.............\n...@.........@@@@.......@@@@.@.......@@@@......@@@@@@.....@.@@@@@.@.............\n....@@.@.......@@@.......@@@@@@@@@@@@@@@@@@@@@@@@@@......@...@@@@...............\n................@@@.@........@@@@@@@@@@@@...@@........@......@@@@...............\n................@@@@.@@.@....................................@@@@...............\n................@@@@@..@.@..........................@@........@@................\n..........@......@@@@@@.@.@..@..........@...@....@@@..........@@................\n.................@@@@@......@@@@@@@@@@@........@@.............@.................\n........@@@@......@.@@@.........@@@.@@@@@@@@....................................\n.....................@@.........................................................\n......................@@........................................................\n.......................@@.......................................................\n................................................................................\n................................................................................")
-        from character_sheets import batter
-        fight(batter)
-        if batter.health <= 0:
-            batter.health = batter.maxhealth
-            x = input("The corpse of the masked man lies before you\nA: consume\nB: loot\nC:leave\n").lower()
-            if x == "c":
-                print("You proceed forwards")
-            else:
-                if random.randint(1, 100) + player.luck > 5:
-                    if x == "b":
-                        print("You loot the corpse for supplies")
-                        from invmenu import words
-                        time.sleep(para.Mwait)
-                        new = random.randint(0, len(words) - 5)
-                        print("You found some", words[new])
-                        player.inv[words[new]] += 1
-
-                    elif x == "c":
-                        print("What are you thinking? You can't just eat a human!")
-                        time.sleep(para.Swait)
-                        print("However, after eating nothing but rotten meat for the past few days, your mouth can't help but water at the thought")
-                        time.sleep(para.Swait)
-                        print("Unable to control your body, you find yourself kneeling besides the corpse")
-                        time.sleep(para.Swait)
-                        print("No time is wasted cutting out chunks or removing clothes; instead, you immediately sink your teeth in like a wild animal")
-                        time.sleep(para.Swait)
-                        print("For several minutes you greedily tear into them, until all that remains are bones")
-                        time.sleep(para.Swait)
-                        print("You are no more man than beast; a slave to your base desires.")
-                        time.sleep(para.Lwait)
-                        restore("Hunger", player.hunger, para.largerestore, 100)
-                        print("[Sanity -40]")
-                        player.sanity -= 40
-
+        x = input("Do you:\nA: Attack\nB: Hide\nC: Run\n").lower()
+        combat = False
+        if x == "a":
+            print("You attack the masked man")
+            combat = True
+        elif x == "b":
+            print("You run into a nearby building to hide")
+            time.sleep(para.Mwait)
+            print("Finding yourself in a public bathroom, you run into the furthest cubicle and shut the door")
+            time.sleep(para.Mwait)
+            print("Soon, you hear footsteps approaching")
+            time.sleep(para.Mwait)
+            for i in range(6):
+                if i == 6:
+                    print("It's your door")
+                    time.sleep(para.Mwait)
+                    print("You find yourself staring directly at the lifeless mask of your assailant")
+                    time.sleep(para.Swait)
+                    print("[Sanity -"+str(para.smallchange)+"]")
+                    player.sanity -= para.smallchange
+                    combat = True
                 else:
-                    print("Suddenly, the masked man gets back up!")
-                    fight(batter)
+                    door = random.randint(0, 6-i)
+                    if door == 0:
+                        print("The footsteps fade away")
+                        break
+                    else:
+                        print("'BAM!'")
+                        time.sleep(para.Swait)
+                        print("You hear the door to one of the bathroom stalls get slammed open")
+                        time.sleep(para.Lwait)
+
+        elif x == "c":
+            print("You run as fast as you can in the opposite direction, and the masked man gives chase")
+            time.sleep(para.Mwait)
+            print("He seems to enjoy toying with you, slowing down until he's nearly out of sight before speeding up again")
+            time.sleep(para.Mwait)
+            print("Suddenly, you hear a loud snapping sound behind you, alongside the crunching of bones")
+            time.sleep(para.Mwait)
+            print("The alleyway you just ran through had been blocked off by a vertical row of teeth")
+            time.sleep(para.Mwait)
+            print("All that remained of your pursuer was a single arm, poking out from a gap in the teeth.")
+            time.sleep(para.Mwait)
+            print("[Hunger -"+str(para.smallchange)+"]")
+            print("[Sanity -"+str(para.smallchange)+"]")
+            player.hunger -= para.smallchange
+            player.sanity -= para.smallchange
+            time.sleep(para.Swait)
+            print("Unfortunately, the chase caused you to backtrack through some of the progress you made")
+            print("[Distance -3]")
+            misc.distance -= 3
+
+        if combat == True:
+            print("..@@@@@@....@.@@@@@@...........@@......................@@@@@....@..@@...........\n.....@@......@@@@@.......................................@@@@@..................\n........@...@@@@@.........................................@@@@@.....@........@@.\n...........@@@@@............................................@@@@@...@....@@.@@..\n..........@@@@@..............................................@@@@@....@@.@@.....\n.........@@@@@.......................................@........@@@@@@@@@@........\n.........@@@@....................................@@@@@.........@@@@@............\n........@@@@.......@@@@@.......................@@@@@@@@.........@@@@@...........\n........@@@.......@@@@@@@......................@@@@@@@@.@........@@@@...........\n.......@@@@.......@@@@@@@@@...................@@@@@@@@@@@.......................\n.......@@@@......@@@@@@@@@@@..................@@@@@@@@@@@.........@.@@@.........\n.......@..........@@@@@@@@@@..................@@@@@@@@@@@.......@.@.............\n.@.@@@@..........@@@@@@@@@@@..................@@@@@@@@@@@.........@..@@.........\n.@@@@..@.........@@@@@@@@@@@@.................@@@@@@@@@@@.........@@@@@........@\n.@@@@.@@@........@@@@@@@@@@@@.................@@@@@@@@@...........@@@@@@.....@@@\n.@@@@.@@@@@.......@@@@@@@@@@@.................@@@@@@@@.@@.........@@@@@@...@@@..\n..@@..@@@@@........@@@@@@@@@@.........@.......@@@@@@@.........@@..@@@@@..@@@....\n.@@@@..@@@@........@..@@@@@@@.....@@@@@@.@@.....@@@@@@.......@...@@@@@@@@@.....@\n.@@@@@.@@@@...........@.@@@......@@@@@@@@@.@................@@@@.@@@@@@@@....@..\n..@@@@.@@@@..@@.................@@@@@@@@@@@@@....@@........@@@@@@@@@@@@.@.......\n.@@@@@.@@@@.@@@@@.......@@@@....@@@@@@@@@@@@....@@@@.........@@@.@@@@@@@@@......\n.@@@@...@@@@.@@@..@......@@@.....@@@@@@@@@@@......@...@@@@...@@..@@@@.@@@@@.....\n.@@@@@.@@@@@.@@....@@.....@........@@@@@@@........@.@@@.....@@@.@@@@..@...@@@@@@\n.@@@@@.@.@@@@@@@...@@@@@............................@.....@@@@@@@@@@..@...@.....\n..@@@@@@.@@@@@@@@......@.@@@@@@.........@@@@@@@@.........@@@@@@@@@@@@@@.@.@.....\n..@@@@.@.@@@@@@@@@@@.........@@.@@@@@@@@@...............@@.@@..@@@@@.....@.@@@..\n..@@@@.@.@@@@@@@@@@@..................@...............@@@...@.@@@@@..........@.@\n.@@@@@@..@@@@@.@@..@@@@.............................@@@@..@..@@@@@.............\n...@@@@@@..@@@@@.@..@@@@@........................@.@@@@...@..@@@@.@.............\n...@.........@@@@.......@@@@.@.......@@@@......@@@@@@.....@.@@@@@.@.............\n....@@.@.......@@@.......@@@@@@@@@@@@@@@@@@@@@@@@@@......@...@@@@...............\n................@@@.@........@@@@@@@@@@@@...@@........@......@@@@...............\n................@@@@.@@.@....................................@@@@...............\n................@@@@@..@.@..........................@@........@@................\n..........@......@@@@@@.@.@..@..........@...@....@@@..........@@................\n.................@@@@@......@@@@@@@@@@@........@@.............@.................\n........@@@@......@.@@@.........@@@.@@@@@@@@....................................\n.....................@@.........................................................\n......................@@........................................................\n.......................@@.......................................................\n................................................................................\n................................................................................")
+            from character_sheets import batter
+            if fight(batter) == False:
+                batter.health = batter.maxhealth
+                x = input("The corpse of the masked man lies before you\nA: consume\nB: loot\nC:leave\n").lower()
+                if x == "c":
+                    print("You proceed forwards")
+                else:
+                    if random.randint(1, 100) + player.luck > 5:
+                        if x == "b":
+                            print("You loot the corpse for supplies")
+                            from invmenu import words
+                            time.sleep(para.Mwait)
+                            new = random.randint(0, len(words) - 5)
+                            print("You found some", words[new])
+                            player.inv[words[new]] += 1
+
+                        elif x == "c":
+                            print("What are you thinking? You can't just eat a human!")
+                            time.sleep(para.Swait)
+                            print("However, after eating nothing but rotten meat for the past few days, your mouth can't help but water at the thought")
+                            time.sleep(para.Swait)
+                            print("Unable to control your body, you find yourself kneeling besides the corpse")
+                            time.sleep(para.Swait)
+                            print("No time is wasted cutting out chunks or removing clothes; instead, you immediately sink your teeth in like a wild animal")
+                            time.sleep(para.Swait)
+                            print("For several minutes you greedily tear into them, until all that remains are bones")
+                            time.sleep(para.Swait)
+                            print("You are no more man than beast; a slave to your base desires.")
+                            time.sleep(para.Lwait)
+                            #restore("Hunger", player.hunger, para.largerestore, 100)
+                            a = player.hunger
+                            player.hunger += para.largerestore
+                            if player.hunger > 100:
+                                player.hunger = 100
+                            print("[Hunger restored by", str(player.hunger - a) + "]")
+                            print("[Sanity -40]")
+                            player.sanity -= 40
+
+                    else:
+                        print("Suddenly, the masked man gets back up!")
+                        fight(batter)
 
 class shopc(encounters):
     def __init__(self):
@@ -516,12 +617,130 @@ class shopc(encounters):
 
         print("CoMe AgAiNn SsOoNn!")
 
-
 class gnasherc(encounters):
     def __init__(self):
         super().__init__(7, 101, "gnasher")
     def text(self):
-        print("Combat encounter: gnasher")
+        print("You hear a loud crash in front of you")
+        time.sleep(para.Mwait)
+        print("A humanoid figure steps back, leaving a sizeable dent in the wall it ran into")
+        time.sleep(para.Mwait)
+        print("The creature's skin is grey and clammy, and its arms have seemingly fused into its body")
+        time.sleep(para.Mwait)
+        print("The monster is also devoid of facial features, save for a giant mouth taking up its entire face")
+        time.sleep(para.Mwait)
+        print("The monster begins to prowl, tapping on random objects with its clawed feet and listening out for noise")
+        time.sleep(para.Mwait)
+        print("Despite standing directly in front of it, the creature doesn't seem to have noticed you yet.")
+        time.sleep(para.Mwait)
+        x = input("A: Fight\nB: Run\nC: Distraction\nD: Sneak past\n").lower()
+        combat = False
+        if x == "a":
+            print("You run towards the creature")
+            combat = True
+
+        elif x == "b":
+            print("You decide to run away as fast as you can")
+            time.sleep(para.Swait)
+            print("Suddenly, you hear a loud screeching noise behind you")
+            time.sleep(para.Mwait)
+            print("The screeching noise gets louder and louder")
+            time.sleep(para.Mwait)
+            print("Suddenly, you are hit by the impact of the creature")
+            time.sleep(para.Mwait)
+            print("Pain surges through your body as you are knocked to the ground from the force of the blow")
+            time.sleep(para.Mwait)
+            print("[Health -4]")
+            player.health -= 4
+            combat = True
+
+        elif x == "c":
+            while True:
+                print("Perhaps if you were to throw something, you could draw the creature's attention away from you")
+                time.sleep(para.Swait)
+                throw = input("A: Throw gold\nB: Throw item\nC: Throw self\n").lower()
+                if throw == "a":
+                    if player.gold > 0:
+                        print("You throw a piece of gold")
+                        time.sleep(para.Mwait)
+                        print("The gold makes a loud clanging noise as it hits the floor")
+                        time.sleep(para.Mwait)
+                        print("The creature suddenly jolts up and charges in the direction of the gold, letting loose an ear-piercing screech")
+                        time.sleep(para.Mwait)
+                        print("You seize the moment and dash past as fast as you can")
+                        time.sleep(para.Swait)
+                        print("[Hunger -"+str(para.smallchange)+"]")
+                        player.hunger -= para.smallchange
+                        print("[Gold -1]")
+                        player.gold -= 1
+                        break
+                    else:
+                        print("You don't have enough gold")
+                        continue
+                elif throw == "b":
+                    from invmenu import words
+                    while True:
+                        hasitems = False
+                        for i in range(len(words)):
+                            if player.inv[words[i]] > 0:
+                                print(words[i] + ":", player.inv[words[i]])
+                                hasitems = True
+
+                        if hasitems == True:
+                            garbage = input("Type the item you want to throw").lower
+                            if garbage in player.inv:
+                                print("You throw the", garbage, "at some empty bottles lined up on a nearby window")
+                                time.sleep(para.Mwait)
+                                print("The bottles fall to the floor with a loud crash, instantly grabbing the monster's attention")
+                                time.sleep(para.Mwait)
+                                print("With an ear-piercing shriek, the monster charges at the window, crashing through the wall of the house")
+                                time.sleep(para.Mwait)
+                                print("You make your escape before the dust can settle")
+                                time.sleep(para.Swait)
+                                print("["+str(garbage), "-1]")
+                                player.inv[garbage] -= 1
+                                break
+                        else:
+                            print("You have no items to throw")
+                        continue
+
+                else:
+                    print("You throw yourself into some nearby boxes, which topple down around you")
+                    time.sleep(para.Mwait)
+                    print("The creature snaps towards you, and charges at breakneck speed")
+                    time.sleep(para.Mwait)
+                    print("Before you can pick yourself up, you feel a colossal force ram into you, sending you flying into a wall")
+                    time.sleep(para.Swait)
+                    print("[Health -4]")
+                    player.health -= 4
+                    print("You can barely endure the pain in your ribs as you see the monster preparing another charge attack")
+                    combat = True
+
+        elif x == "d":
+            print("You slowly creep by the creature, being careful as to make as little noise as possible")
+            time.sleep(para.Mwait)
+            print("You feel the creature's hot breath against your face")
+            time.sleep(para.Mwait)
+            if random.randint(0, 100) + player.luck > 20:
+                print("You manage to carefully sneak ahead, until the creature is out of sight")
+                time.sleep(para.Mwait)
+                print("You breath a sigh of relief")
+            else:
+                print("Suddenly, the silence is pierced by a crinkling sound")
+                time.sleep(para.Mwait)
+                print("You look down, and to your horror you realise your foot has landed on a pile of broken glass")
+                time.sleep(para.Mwait)
+                print("You look back up and are greeted by the open maw of the creature lunging towards you!")
+                time.sleep(para.Mwait)
+                print("There's a sickening crunch as its teeth pierce through you, causing a massive surge of pain throughout your body")
+                time.sleep(para.Swait)
+                print("[Health -4]")
+                player.health -= 4
+
+
+        if combat == True:
+            from character_sheets import gnasher
+            fight(gnasher)
 
 class sorrowc(encounters):
     def __init__(self):
@@ -748,31 +967,31 @@ class amigarac(encounters):
 class holesc(encounters):
     def __init__(self):
         super().__init__(30, 101, "holes")
-    def text(self, para, player):
+    def text(selfr):
         print("Sees holes on hand, can either cut it out and take damage, or let holes spread for reduced max hp")
 
 class saviorc(encounters):
     def __init__(self):
         super().__init__(30, 101, "savior")
-    def text(self, para, player):
+    def text(self):
         print("Fight consecutive battles and be rewarded or ignore at sanity cost")
 
 class amalgamc(encounters):
     def __init__(self):
         super().__init__(35, 101, "amalgam")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: Amalgam")
 
 class angelc(encounters):
     def __init__(self):
         super().__init__(35, 50, "angel")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: Angel")
 
 class gods_callingc(encounters):
     def __init__(self):
         super().__init__(35, 50, "gods_calling")
-    def text(self, para, player):
+    def text(self):
         print("You hear the voices of the old ones calling to you")
         time.sleep(para.Mwait)
         x = para.Lwait
@@ -799,7 +1018,7 @@ class gods_callingc(encounters):
 class maskedbasec(encounters):
     def __init__(self):
         super().__init__(40, 101, "masked base")
-    def text(self, para, player):
+    def text(self):
         print("Can either sneak by, steal food or turn back")
         print("stealing food has higher chance of failure, turning back results in loss of distance")
         print("if caught, fight 2 masked men and then leader")
@@ -807,31 +1026,31 @@ class maskedbasec(encounters):
 class terrorc(encounters):
     def __init__(self):
         super().__init__(40, 50, "terror")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: Terror")
 
 class dollc(encounters):
     def __init__(self):
         super().__init__(40, 101, "doll")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: doll")
 
 class hydrac(encounters):
     def __init__(self):
         super().__init__(40, 101, "hydra")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: Hydra")
 
 class skinwalkerc(encounters):
     def __init__(self):
         super().__init__(40, 101, "skinwalker")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: skinwalker")
 
 class HADc(encounters):
     def __init__(self):
         super().__init__(40, 101, "H.A.D")
-    def text(self, para, player):
+    def text(self):
         print("Combat encounter: H.A.D")
 
 

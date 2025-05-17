@@ -69,9 +69,11 @@ def gameloop():
             misc.distance += 1
             if misc.distance > misc.difficulty:
                 misc.difficulty = misc.distance
-            player.hunger -= para.smallchange
+            player.hunger -= 5
             if player.inv["charm"] > precount:
                 player.luck += 1
+            if player.inv["charm"] < precount:
+                player.luck -= 1
 
 
 def ending():

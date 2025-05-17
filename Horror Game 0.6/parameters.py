@@ -34,7 +34,8 @@ class paracelsus:
 para = paracelsus(1, 1.5, 2, 10, 20, 1, 2, 30, 50, 3, 5)
 
 
-
+#Swait = 1
+#Mwait = 1.5
 
 
 # class inventory:

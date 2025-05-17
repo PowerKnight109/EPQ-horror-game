@@ -7,7 +7,7 @@
 import time
 import random
 from character_sheets import player
-from parameters import para
+from parameters import para, misc
 
 
 def fight(enemy):
@@ -92,6 +92,11 @@ def fight(enemy):
 
             else:
                 print("and did!")
+                time.sleep(para.Swait)
+                print("[Distance -1]")
+                print("[Hunger -" + str(para.smallchange) + "]")
+                player.hunger -= para.smallchange
+                misc.distance -= 1
                 peace = True
                 break
 
