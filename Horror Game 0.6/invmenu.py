@@ -38,7 +38,11 @@ def inventory():
             def pill():
                 print("pills")
                 time.sleep(para.Swait)
-                print("restores", para.largerestore, "sanity\nFailure to take may result in withdrawal")
+                print("restores", para.largerestore, "sanity")
+                if player.sanity <= 50:
+                    print("They hide the truth")
+                else:
+                    print("Failure to take may result in withdrawal")
                 time.sleep(para.Mwait)
                 print("Take the pills?")
                 print("A: Yes\nB: No")

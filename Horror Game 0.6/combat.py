@@ -11,6 +11,7 @@ from parameters import para, misc
 
 
 def fight(enemy):
+    print(enemy.image)
     def attack(assailant, victim):
         #assailant = person attacking
         #victim = person being hit
@@ -43,7 +44,7 @@ def fight(enemy):
         print("You have", str(player.health)+"/"+str(player.maxhealth), "health")
         time.sleep(para.Mwait)
         print("Will you:")
-        time.sleep(para.Swait)
+        #time.sleep(para.Swait)
         print("A: FIGHT")
         print("B: CHECK")
         print("C: ITEM")
@@ -113,8 +114,17 @@ def fight(enemy):
         time.sleep(para.Swait)
         print("You gained", enemy.xp, "Experience Points.")
         player.xp += enemy.xp
+        while player.xp > 100:
+            print("You feel yourself becoming stronger!")
+            time.sleep(para.Mwait)
+            print("[Max Health +1]")
+            print("Attack +1]")
+            print("[Luck +1]")
+            player.atk += 1
+            player.maxhealth += 1
+            player.luck += 1
         return True
-        time.sleep(para.Lwait)
+
 
 
 
