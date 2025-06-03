@@ -11,7 +11,10 @@ from parameters import para, misc
 
 
 def fight(enemy):
+    time.sleep(para.Mwait)
+    enemy.health = enemy.maxhealth
     print(enemy.image)
+    time.sleep(para.Lwait)
     def attack(assailant, victim):
         #assailant = person attacking
         #victim = person being hit
@@ -56,12 +59,12 @@ def fight(enemy):
 
         elif action == "B":
             print("CHECK")
-            print("type: action")
+            #print("type: action")
             print("reveal the stats of the enemy, as well as some additional information about it.")
             time.sleep(para.Mwait)
             print("Do you use check?")
-            time.sleep(para.Mwait)
-            print("")
+            #time.sleep(para.Mwait)
+            #print("")
             print("A: Yes")
             print("B: No")
             confirm = input("")
@@ -105,6 +108,7 @@ def fight(enemy):
         time.sleep(para.Mwait)
         print(attack(enemy, player))
 
+
     if enemy.health <= 0:
         time.sleep(para.Swait)
         print(enemy.losetext)
@@ -114,15 +118,17 @@ def fight(enemy):
         time.sleep(para.Swait)
         print("You gained", enemy.xp, "Experience Points.")
         player.xp += enemy.xp
-        while player.xp > 100:
+        while player.xp > player.mxp:
             print("You feel yourself becoming stronger!")
             time.sleep(para.Mwait)
             print("[Max Health +1]")
-            print("Attack +1]")
+            print("[Attack +1]")
             print("[Luck +1]")
             player.atk += 1
             player.maxhealth += 1
             player.luck += 1
+            player.xp -= player.mxp
+            player.mxp += 25
         return True
 
 
@@ -133,7 +139,8 @@ def fight(enemy):
         print(enemy.wintext)
         time.sleep(1.5)
         print("GAME OVER")
-    enemy.health = enemy.maxhealth
+
+
 
 # print(
 #     "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")

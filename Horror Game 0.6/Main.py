@@ -1,5 +1,6 @@
 def main():
     from Horror_game import intro
+
     print(intro())
     from Horror_game import gameloop
     print(gameloop())

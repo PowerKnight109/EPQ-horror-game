@@ -38,17 +38,11 @@ def gameloop():
     while misc.distance < 50 and player.health > 0 and player.hunger >= 0 and player.sanity > 0:
         time.sleep(para.Swait)
         precount = player.inv["charm"]
-
-        print("")
-        print("")
-        print("")
-        print("")
-        print("")
-        print("You have traveled", misc.distance, "meters")
+        print("\n\n\n\n\nYou have traveled", misc.distance, "meters")
         print("Health:", str(player.health) + "/" + str(player.maxhealth))
         print("Hunger:", player.hunger)
         print("Sanity:", player.sanity)
-        print("press enter to step forward")
+        #print("press enter to step forward")
         print("enter 'I' to access inventory")
         proceed = input().lower()
 
@@ -58,12 +52,7 @@ def gameloop():
 
         else:
             #Event start
-            print("")
-            print("")
-            print("")
-            print("")
-            print("")
-            print("You venture forth into the murky alleyways")
+            print("\n\n\n\n\nYou venture forth into the murky alleyways")
             from encounters import encounterpick
             last = encounterpick(last)
             misc.distance += 1
@@ -74,6 +63,12 @@ def gameloop():
                 player.luck += 1
             if player.inv["charm"] < precount:
                 player.luck -= 1
+
+            time.sleep(para.Mwait)
+            from parameters import stalking
+            if stalking.switch == True:
+                stalking.text[stalking.counter]()
+                stalking.counter += 1
 
 
 def ending():

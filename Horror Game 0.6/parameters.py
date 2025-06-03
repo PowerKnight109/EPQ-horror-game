@@ -4,11 +4,14 @@ class misc:
         self.stalking = stalking
         self.distance = distance
         self.difficulty = difficulty
+
 #hasgun = Determines whether to add ammo to the itempool
 #stalking = Determines whether the player is being stalked
 #distance = The players current distance and difficulty
 
-misc = misc(False, -1, 1, 1)
+misc = misc(False, False, 1, 1)
+
+
 
 
 class paracelsus:
@@ -34,25 +37,41 @@ class paracelsus:
 para = paracelsus(1, 1.5, 2, 10, 20, 1, 2, 30, 50, 3, 5)
 
 
-#Swait = 1
-#Mwait = 1.5
+import time
+from character_sheets import player
+
+def stalkt1():
+    print("\n\n\nYou feel like you're being watched")
+    time.sleep(para.Swait)
+    print("[Sanity -10]")
+    player.sanity -= 10
+
+def stalkt2():
+    print("\n\n\nYou hear footsteps behind you")
+    time.sleep(para.Swait)
+    print("[Sanity -10]")
+    player.sanity -= 10
+
+def stalkt3():
+    print("\n\n\nYou spot a figure watching you from the shadows")
+    time.sleep(para.Swait)
+    print("[Sanity -10]")
+    player.sanity -= 10
+
+def stalkt4():
+    print("\n\n\nThe figure in the shadows seems to be getting closer and closer")
+    time.sleep(para.Swait)
+    print("[Sanity -10]")
+    player.sanity -= 10
+
+stalktext = [stalkt1, stalkt2, stalkt3, stalkt4]
 
 
-# class inventory:
-#     def __init__(self, food, bandage, pills, knives, acid, rbtfoot, roids, ammo, charm, effigy):
-#         self.food = food
-#         self.bandage = bandage
-#         self.pills = pills
-#         self.knives = knives
-#         self.acid = acid
-#         self.rbtfoot = rbtfoot
-#         self.roids = roids
-#         self.ammo = ammo
-#         self.charm = charm
-#         self.effigy = effigy
-#Items get appended to the list when added to inventory, duplicates increase the value of the corresponding variable
 
-#inv = inventory(5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-#items = ["meat"]
+class stalkc:
+    def __init__(self, switch, counter, text):
+        self.switch = switch
+        self.counter = counter
+        self.text = text
 
-
+stalking = stalkc(False, 0, stalktext)

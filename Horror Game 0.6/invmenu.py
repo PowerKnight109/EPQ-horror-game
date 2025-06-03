@@ -2,6 +2,7 @@ from character_sheets import player
 words = ["meat", "pills", "bandages", "effigy", "charm", "steroids", "rabbitfoot", "acid", "bullets", "gun"]
 def inventory():
     while True:
+        print("You have", player.gold, "gold")
         hasitems = False
         for i in range(len(words)):
             if player.inv[words[i]] > 0:
