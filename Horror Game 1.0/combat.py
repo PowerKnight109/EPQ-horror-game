@@ -15,6 +15,8 @@ def fight(enemy):
     enemy.health = enemy.maxhealth
     print(enemy.image)
     time.sleep(para.Lwait)
+    if player.atk <1:
+        player.atk = 1
     def attack(assailant, victim):
         #assailant = person attacking
         #victim = person being hit
@@ -43,6 +45,12 @@ def fight(enemy):
         turnp = True
         time.sleep(para.Swait)
         turns += 1
+        if player.health > player.maxhealth:
+            player.health = player.maxhealth
+        if player.sanity > 100:
+            player.sanity = 100
+        if player.hunger > 100:
+            player.hunger = 100
         print("\n\n")
         print("You have", str(player.health)+"/"+str(player.maxhealth), "health")
         time.sleep(para.Mwait)
@@ -75,6 +83,8 @@ def fight(enemy):
                 print("Health:", str(enemy.health) + "/" + str(enemy.maxhealth), "\nAttack:", enemy.atk, "\nAccuracy:", enemy.accuracy)
                 time.sleep(3)
                 print(enemy.checkdesc)
+                time.sleep(para.Lwait)
+                print("")
             else:
                 continue
         # if special(pmoves) == True:
@@ -123,7 +133,8 @@ def fight(enemy):
             time.sleep(para.Mwait)
             print("[Max Health +1]")
             print("[Attack +1]")
-            print("[Luck +1]")
+            print("[Luck +2]")
+
             player.atk += 1
             player.maxhealth += 1
             player.luck += 1

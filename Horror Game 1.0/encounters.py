@@ -28,8 +28,6 @@ class flavourc(encounters):
     def text(self):
         print("gloom and paranoia fill the air")
 
-
-
 class Nsaneflavourc(encounters):
     def __init__(self):
         super().__init__(1, 50, "Nsaneflavour")
@@ -53,7 +51,6 @@ class eldritchvisionsc(encounters):
         time.sleep(para.Swait)
         print("[Sanity -"+str(para.smallchange)+"]")
         player.sanity -= para.smallchange
-
 
 class foodfindc(encounters):
     def __init__(self):
@@ -112,7 +109,6 @@ class slimec(encounters):
     def text(self):
         print("A black slime drips down")
         from character_sheets import slime
-        time.sleep(para.Mwait)
         #print(".................................................................\n...........................::::--:::.............................\n.........................::*#%%%##%#=::..........................\n................:::...::=#%%%%%%%%%%%%@%=:::.....................\n.............::::+#*-=*#%%#%%#%%%%%%%%%%%%*:.::::::..............\n..........:-*####%%%%%%##%%%%%%%%%%%%%%%%%%%%#%%##%*:............\n.........:+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#:...........\n.........:*%%%%%%%%%#%%%%%%%%%%%####%%%@@@%%%%%%%%%%%=:..........\n.........:#%%%%%%%%%%%%%%%%%%%%%%%%%%%%#*#%%%%%%%%%%#%#-:........\n.......::*%%%%%%%%%%%%%%%%%%%%%%%%%%+-::::::-#%@%%%%%%%#-........\n......:=#%%%%%%%%%###%%%%%%%%%%%%%%-::::+##*::+%@%%%%%%%%:.......\n......-#%%##%%%%%%%%%%%%%%%%%%%%%%*::::-@@@@@::%%%%%@%%%%:.......\n.....:%%%%%%%%%%#%%%%%%%%%%%%%%%%%@:::::::+-:::*@%%#%%%%%-.......\n....:*%%%%%%%%%%%@%%%@@%##%%%%%##%@%=::::::::::%@%%%#%%%%*::::...\n....-#%%%%%##%%#-::::-==#%%%%%%%%%%%%+=::::::-#@%%%%%@%%%%*......\n...:+%%%%@%%%%-+%#=:::=#@%%%%%%%%%%%%%##****%@@#%%#%%%%%%%%-.....\n...:*%%#%%%%#--@@@+-+@@%@%%%%%%%%%%%%%%%%%%%%%%#%%%%%#%%%%%+::::.\n...:#%#%%%#%#+=+*#%%@%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%#%%%%%-::::.\n...:*%%%%%%%%@@@%%%%@%%%%%%%%%%%%%%#%%%%%%%%%%%%##%%##%%%%%:.....\n...:*%%%%%%#%%%%%%%%%%%%%%%##%%%%%=-#%#=*%%%%%%%%%%%%%%%%%*:::...\n...:*%%%%%%%%%%%%%%%%%%%%%--+%=#%*--+*--=%+#%%%%%%%%%%%%%%=......\n...:=%%%%%%%%%%%%%%%#+%+*+---*-=%+--+%=-*%-+%*%%%%%%%@%%%#-......\n....:%%%%%%%%%%%%%%%--=------*%%%%%%%%%%%%%%%%%%%%%%%%%%%*:......\n....:#%%%%%@%%%%%%=%**#%%%%%%#--%#%%%%--*@#%%%%%%%%%%%%%%*:......\n....:*%%%%%+%%%%%%%%-%+-#+#%%=----#@*%=*%%%%%%###%%%%%%%%*:......\n....:-@%%%+:-#%%%%%%%%+-=+*%%%#%%#%%%%%%%%%%%%%%%%%*+%%%%*:......\n.....:#%%#:..:*%%%%%%%%+%%%%%%%%%%%%%%%%%%%%%%%%%%=::#%%%+:......\n.....:=%%*::..::+%%%%%#%%%%%%%%%#%%%%%#%%%%%%%%%#-::::%%%=.......\n......-%%+:......:+%%%%%%%%%%%%%%@%%%%%%%%%%%*%%::...:+%%=.......\n.....::#%+:.......::+%%%%%%%%=%%%@%%%%%%%%#+*%%=::...:=%%-.......\n......:+%*:.........:+#-:*%%%-%%%*+%+::#*:..:#%:.....:=%%=:......")
         if fight(slime) == True:
             slime.health = slime.maxhealth
@@ -147,7 +143,7 @@ class zombiec(encounters):
         x = input("A: Attack\nB: Decieve\nC: Run\n").lower()
         battle = False
         if x == "a":
-            print("You attack the zombie!")
+            print("You attack the monster!")
             battle = True
         elif x == "b":
             print("You outstretch your arms and slowly walk forwards, doing your best impression of a walking corpse")
@@ -179,7 +175,7 @@ class zombiec(encounters):
                 if x == "c":
                     print("You move on")
                 else:
-                    if random.randint(1,100)+player.luck > 10:
+                    if random.randint(1,100)+player.luck > 20:
                         if x == "b":
                             print("You loot the body for supplies")
                             from invmenu import words
@@ -196,11 +192,7 @@ class zombiec(encounters):
                             print("Your stomach is satisfied, but your conscience isn't")
                             time.sleep(para.Mwait)
                             #restore("Hunger", player.hunger,  para.largerestore, 100)
-                            a = player.hunger
-                            player.hunger += para.largerestore
-                            if player.hunger > 100:
-                                player.hunger = 100
-                            print("[Hunger restored by", str(player.hunger - a) + "]\n")
+                            print("[Hunger restored by", str(para.largerestore) + "]\n")
                             print("[Sanity -"+str(para.largechange)+"]")
                             player.sanity -= para.largechange
 
@@ -262,7 +254,6 @@ class lootcorpsec(encounters):
                     player.sanity -= para.largechange
             else:
                 print("The corpse got up and attacked!")
-                time.sleep(para.Mwait)
                 if misc.difficulty < 35:
                     #print("\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@........@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@............@@.....@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@................@@.......@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@............@@@@.............@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@....@....@@@@@@@@@@....@@.........@@@@@@@@@@...@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@.......@@@@@@@@@@@@@@@@@...@@......@@@@@@@@@@@@@@@..@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@......@@@@@@@@@@@@@@@@@@@............@@@@@@@@@@@@@@@@@@..@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@.....@@@@@@@@@@@@@.....@@@............@@@@@@@@@@@@@@@@@@@@...@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@....@@@@@@@@@@@@@...@@..@@.........@@@@@@@@@@@@.....@@@@@@@@....@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@...@@@@@@@@@@@@@@......@@.............@@@..@@@@..@@..@@@@@@@@.....@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@..@@@@@@@@@@@@@@@@@@@@@..................@@@.@@@....@@@@@@@@@@@......@@@@@@@@@@@@@@@@@\n@@@@@@@@@...@@@@@@@@@@@@@@@..........................@@@..@@@@@@@@@@@@@@@.......@@@@@@@@@@@@@@@@\n@@@@@@@@.@@@@@........@@@..............................@@@@.....@@@@@@@@@@@......@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@.......@@@@.....@@@@.......................@@...............@@@......@@@@@@@@@@@@@@\n@@@@@@@@...........@@...@@@@@..........................@@..................@@@....@@@@@@@@@@@@@@\n@@@@@@@................@@@............................@.....................@@@....@@@@@@@@@@@@@\n@@@@@@...............@@@..........................@@@@....................@@@@.....@@@@@@@@@@@@@\n@@@@@@..............@@...........................@@@@@@...............@@@@@@@@.....@@@@@@@@@@@@@\n@@@@..............@@@@......@@..................@@@@@@@@@@...........@@@@@@@@@.....@@@@@@@@@@@@@\n@@@................@@@@....@@@@@@@@............@@@@@@@@@@@@..........@@@@@@@@@.........@@@@@@@@@\n@@@@@@..............@@...@@@@@@@@@@@@@@@@@..@@@@@@@@@@@@@@@@@.......@@@@@@@@@@........@@@@@@@@@@\n@@....@.............@@..@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@....@@@..@@@@@@@@\n@@....@............@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@..@@.....@@@@@@@\n@@....@...........@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.@......@@@@@@@\n@@@...@@.........@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.....@@@@@@@@\n@@@.....@@@.....@@@@@...@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@......@@@@@@@@\n@@@@.......@@@@@@@@@.......@@@@@@@@@@@@@@@@@@@@@@@@@@@@@......@@@@@@@@@@@@@@@@@@@@.....@@@@@@@@@\n@@@@@......@@@@@@@@...........@@@@@@@@@@@@@@@@@@@@@@@@............@@@@@@@@@@@@@@@@....@@@@@@@@@@\n@@@@@@....@@@....................@@@@@@@@@@@@@@@@@@..................@@@@@@@@@@@@.....@@@@@@@@@@\n@@@@@@@@@.@@@......................@@@@@@@@@@@@@......................@@@@@@@@@@@....@@@@@@@@@@@\n@@@@@@@@@@@@..........................@@@@@@@@........................@@...@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@.............................@@@@........................@@@.....@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@............................@@@.........................@@@........@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@...........................@@@@@....................@@@@@@.......@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@............................@@@@@@.................@@@@@.....@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@...........................@@@@@...............@@@@@@.@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@.......................@@@@@................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@.................@@@@@@.................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@............@@@@@@@................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@...........@@@@@@@@...........@@.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@...@@@......@@@@@@@@......@@........@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@........@@....@@@@@@@@.@@............@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@..............@@@@@@@@@@...............@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@........................................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@..........................................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
                     from character_sheets import zombie
@@ -447,8 +438,6 @@ class drinkc(encounters):
                 time.sleep(para.Mwait)
                 print("[Sanity +" + str(para.smallchange) + "]")
                 player.sanity += para.smallchange
-                if player.sanity > 100:
-                    player.sanity = 100
             else:
                 print("The faucet turns on, but it doesn't produce water")
                 time.sleep(para.Mwait)
@@ -491,11 +480,7 @@ class deersacc(encounters):
             time.sleep(para.Mwait)
             print("It had been too long since you had last eaten a normal animal, you had nearly forgotten the taste")
             time.sleep(para.Swait)
-            a = player.hunger
-            player.hunger += para.smallrestore
-            if player.hunger > 100:
-                player.hunger = 100
-            print("[Hunger restored by", str(player.hunger - a) + "]")
+            print("[Hunger restored by", str(para.smallrestore) + "]")
             print("[Sanity -"+str(para.smallchange)+"]")
             player.sanity -= para.smallchange
 
@@ -587,7 +572,7 @@ class batterc(encounters):
                             print("You found some", words[new])
                             player.inv[words[new]] += 1
 
-                        elif x == "c":
+                        elif x == "a":
                             print("What are you thinking? You can't just eat a human!")
                             time.sleep(para.Swait)
                             print("However, after eating nothing but rotten meat for the past few days, your mouth can't help but water at the thought")
@@ -601,13 +586,10 @@ class batterc(encounters):
                             print("You are no more man than beast; a slave to your base desires.")
                             time.sleep(para.Lwait)
                             #restore("Hunger", player.hunger, para.largerestore, 100)
-                            a = player.hunger
                             player.hunger += para.largerestore
-                            if player.hunger > 100:
-                                player.hunger = 100
-                            print("[Hunger restored by", str(player.hunger - a) + "]")
-                            print("[Sanity -40]")
-                            player.sanity -= 40
+                            print("[Hunger restored by", str(player.largerestore) + "]")
+                            print("[Sanity -30]")
+                            player.sanity -= 30
 
                     else:
                         print("Suddenly, the masked man gets back up!")
@@ -786,11 +768,7 @@ class gnasherc(encounters):
                     time.sleep(para.Mwait)
                     print("Alas, no amount of fantasy can mask the foul taste that permeates your tongue")
                     time.sleep(para.Swait)
-                    x = player.hunger
-                    player.hunger += para.largerestore
-                    if player.hunger > 100:
-                        player.hunger = 100
-                    print("[Hunger +"+ str(player.hunger - x)+"]")
+                    print("[Hunger +"+ str(para.largerestore)+"]")
                     player.sanity -= para.largechange
                     print("[Sanity -"+str(para.largechange)+"]")
 
@@ -859,11 +837,7 @@ class ravenc(encounters):
                     time.sleep(para.Mwait)
                     print("But that's just a myth, right?")
                     time.sleep(para.Mwait)
-                    x = player.hunger
-                    player.hunger += para.smallchange
-                    if player.hunger > 100:
-                        player.hunger = 100
-                    print("[Hunger +"+str(player.hunger-x)+"]")
+                    print("[Hunger +"+str(para.smallrestore)+"]")
                     player.luck -= para.smallschange
                     print("[Luck -"+str(para.smallschange)+"]")
 
@@ -946,11 +920,7 @@ class ravenc(encounters):
                         time.sleep(para.Swait)
                         print("Tastes like chicken")
                         time.sleep(para.Mwait)
-                        h = player.hunger
-                        player.hunger += para.smallrestore
-                        if player.hunger > 100:
-                            player.hunger = 100
-                        print("Hunger +"+str(player.hunger - h)+"]")
+                        print("Hunger +"+str(para.smallrestore)+"]")
 
 class tunnelchasec(encounters):
     def __init__(self):
@@ -1009,11 +979,7 @@ class tunnelchasec(encounters):
                         time.sleep(para.Mwait)
                         eat = input("Consume the moleman?\nA: Yes\nB: No\n").lower()
                         if eat == "a":
-                            x = player.hunger
-                            player.hunger += para.largerestore
-                            if player.hunger > 100:
-                                player.hunger = 100
-                            print("[Hunger +" + str(player.hunger - x) + "]")
+                            print("[Hunger +" + str(para.largerestore) + "]")
                             player.sanity -= para.largechange
                             print("[Sanity -" + str(para.largechange) + "]")
 
@@ -1074,7 +1040,7 @@ class lore2c(encounters):
                     time.sleep(para.Mwait)
                     print("\n'Its most notable property however, is its reaction once stimulated with a negative charge'")
                     time.sleep(para.Mwait)
-                    print("'When the two meet, the Zathene energy will undergo an explosive reaction, rapidly heating up and taking on a bright red colouration'")
+                    print("'When the two meet, the Zathene energy will undergo an explosive reaction, rapidly heating up and taking on a bright purple colouration'")
                     time.sleep(para.Mwait)
                     print("'In this form, its appearance is quite similar to that of electricity'")
                     time.sleep(para.Mwait)
@@ -1217,8 +1183,44 @@ class blackcatc(encounters):
     def __init__(self):
         super().__init__(15, 101, "blackcat")
     def text(self):
-        print("eat cat to lose sanity for hunger or pet cat for luck decrease")
-        print("If sanity is low and pet cat, fight cheshire")
+        #print("eat cat to lose sanity for hunger or pet cat for luck decrease")
+        #print("If sanity is low and pet cat, fight cheshire")
+        print("You find a small black cat in the middle of the street")
+        time.sleep(para.Mwait)
+        print("It looks at you and lets out a small meow")
+        time.sleep(para.Mwait)
+        pet = input("A: Pet the cat\nB: Consume the cat\n").lower()
+        if pet == "a":
+            print("As you approach the cat, it bends down for you to pet it")
+            time.sleep(para.Mwait)
+            print("You trace your fingers along the cat's silky fur, and it lets out a satisfied purr in response")
+            time.sleep(para.Mwait)
+            print("The act puts you at ease")
+            time.sleep(para.Swait)
+            print("[Sanity +"+str(para.smallrestore)+"]")
+            player.sanity += para.smallrestore
+            time.sleep(para.Mwait)
+            print("Wait, wasn't there an old saying about black cats?")
+            time.sleep(para.Mwait)
+            print("I'm sure it wasn't important")
+            time.sleep(para.Mwait)
+            print("[Luck -1]")
+            player.luck -= 1
+
+        elif pet == "b":
+            print("As you approach the cat, it bends down for you to pet it")
+            time.sleep(para.Mwait)
+            print("But instead of petting it, your hands roughly grab the cat to bring it towards your mouth")
+            time.sleep(para.Mwait)
+            print("The feline shrieks and claws in order to escape your grip, but to no avail")
+            time.sleep(para.Mwait)
+            print("The poor kitten meets its demise as your teeth bite down on its throat")
+            time.sleep(para.Mwait)
+            print("You are wracked with guilt for killing such an innocent soul, yet your hunger is greater still")
+            time.sleep(para.Mwait)
+            print("[Hunger +" + str(para.smallrestore) + "]")
+            player.sanity -= para.smallchange
+            print("[Sanity -" + str(para.smallchange) + "]")
 
 class restc(encounters):
     def __init__(self):
@@ -1228,14 +1230,11 @@ class restc(encounters):
         time.sleep(para.Mwait)
         print("When you wake up, you feel reinvigorated and ready to take on the world")
         time.sleep(para.Mwait)
-        z = player.sanity
         player.health = player.maxhealth
-        player.sanity += para.smallchange
-        if player.sanity > 100:
-            player.sanity = 100
         player.hunger -= para.smallchange
+        player.sanity += para.smallrestore
         print("[Health fully restored]")
-        print("[Sanity +"+str(player.sanity-z))
+        print("[Sanity +"+str(para.smallrestore)+"]")
         print("[Hunger -"+str(para.smallchange)+"]")
 
     def badsleep(self):
@@ -1245,10 +1244,8 @@ class restc(encounters):
         time.sleep(para.Mwait)
         y = player.health
         player.health += (player.maxhealth/2)
-        if player.health > player.maxhealth:
-            player.health = player.maxhealth
         player.hunger -= para.smallchange
-        print("[Health +"+str(player.health - y)+"]")
+        print("[Health +"+str(player.maxhealth/2)+"]")
         print("[Hunger -"+str(para.smallchange)+"]")
 
     def attacked(self):
@@ -1271,12 +1268,9 @@ class restc(encounters):
         time.sleep(para.Mwait)
         z = player.sanity
         player.health = player.maxhealth
-        player.sanity += para.smallchange
-        if player.sanity > 100:
-            player.sanity = 100
         player.hunger -= para.smallchange
         print("[Health fully restored]")
-        print("[Sanity +" + str(player.sanity - z)+"]")
+        print("[Sanity +" + str(para.smallrestore)+"]")
         print("[Hunger -" + str(para.smallchange) + "]")
         time.sleep(para.Mwait)
         print("However upon waking up, you realise that someone had gone through your items while you were asleep!")
@@ -1321,11 +1315,9 @@ class restc(encounters):
         time.sleep(para.Mwait)
         y = player.health
         player.health += (player.maxhealth / 2)
-        if player.health > player.maxhealth:
-            player.health = player.maxhealth
         player.hunger -= para.smallchange
         player.sanity -= 30
-        print("[Health +" + str(player.health - y) + "]")
+        print("[Health +" + str(player.maxhealth/2) + "]")
         print("[Hunger -" + str(para.smallchange) + "]")
         print("[Sanity-30]")
 
@@ -1507,7 +1499,7 @@ class muggingc(encounters):
                 time.sleep(para.Mwait)
                 print("You struggle with all your might")
                 time.sleep(para.Swait)
-                if random.randint(1, 100) + player.luck < 50:
+                if random.randint(1, 100) + player.luck + player.atk < 55:
                     print("However, your captor's grip is too strong, and you are unable to escape")
                     time.sleep(para.Mwait)
                     print("Your struggling is quickly by the swift blow of a baseball bat to your legs ")
@@ -1556,14 +1548,11 @@ class muggingc(encounters):
         if betray == True:
             print("You pass on through, now with considerably lighter pockets than before")
 
-
-
-
-class mansionc(encounters):
-    def __init__(self):
-        super().__init__(15, 101, "mansion")
-    def text(self):
-        print("Stay at creepy guy's mansion")
+# class mansionc(encounters):
+#     def __init__(self):
+#         super().__init__(15, 101, "mansion")
+#     def text(self):
+#         print("Stay at creepy guy's mansion")
 
 class doctorc(encounters):
     def __init__(self):
@@ -1571,44 +1560,41 @@ class doctorc(encounters):
     def text(self):
         print("You encounter a man in a bloodstained doctor's uniform")
         time.sleep(para.Mwait)
-        print(
-            "He shambles towards you, pulling down his mask to reveal a crooked row of yellow teeth fixed in a menacing grin")
+        print("He shambles towards you, pulling down his mask to reveal a crooked row of yellow teeth fixed in a menacing grin")
         time.sleep(para.Mwait)
         print("'Ah, a healthy donor! It's been so long since I've had someone like you.'")
         time.sleep(para.Mwait)
-        print(
-            "'Please, won't you consider donating your blood for those in need? There are many dying patients who could use it much more than you, and I'll offer a reward too!'")
+        print("'Please, won't you consider donating your blood for those in need? There are many dying patients who could use it much more than you, and I'll offer a reward too!'")
         time.sleep(para.Mwait)
         print("The doctor raises a long rusted needle, covered in bits of dried blood")
         time.sleep(para.Mwait)
-        print("Accept the", "doctor's", "request?")
+        print('Accept the "doctor'+"'"+'s", request?')
+        #Should read as "Accept the "doctor's" request?
         time.sleep(para.Swait)
         print("A: Yes")
         print("B: No way!")
         x = input()
         x = x.lower()
         if x == "a":
-            print("The doctor jabs the needle into your arm with the care and grace of an enraged bull")
+            print("The doctor roughly jabs the needle into your arm with no concern for your pain")
             time.sleep(para.Mwait)
-            print(
-                "Blood spurts out of your arm with vigor, as the doctor produces a bottle and flails around trying to catch it all")
+            print("Blood spurts out of your arm with vigor, as the doctor flails around trying to collect it all in a bottle")
             time.sleep(para.Mwait)
-            print(
-                "The sight and amount of  blood leaving your body makes you dizzy, and you find yourself losing consciousness")
+            print("The sight and amount of  blood leaving your body makes you dizzy, and you find yourself losing consciousness")
             time.sleep(para.Mwait)
             print("[Health -" + str(para.largeschange) + "]")
+            player.health -= para.largeschange
             time.sleep(para.Mwait)
             print("When you come to, the doctor stands before you, an empty bottle clutched in his hands")
             time.sleep(para.Mwait)
-            print(
-                "'Well unfortunately we were not able to collect much blood this time round, but a deal is a deal so I shall give you your compensation'")
+            print("'Unfortunately we were not able to collect much blood this time round, but a deal is a deal so I shall give you your compensation'")
             time.sleep(para.Mwait)
-            print("The doctor bends over and hands you 2 gold")
+            print("[Gold +2]")
+            player.gold +=2
             time.sleep(para.Mwait)
-            print("You see a red liquid trickle down the corner of the doctor's mouth, which he quickly licks up")
+            print("It could just be your imagination, but you swear the doctor seems much younger than before")
             time.sleep(para.Mwait)
-            print(
-                "Anyway, I hope you come again, many patients are counting on your blood, we simply MUST have it!")
+            print("'I sincerely hope you come again, many patients are counting on your blood, and I- we simply MUST have it!'")
 
         else:
             print("You turn to leave, you already have yourself to worry about")
@@ -1617,22 +1603,229 @@ class doctorc(encounters):
             time.sleep(para.Mwait)
             print("'Oh I don't think so. Your blood is simply to precious for us to give up!'")
             time.sleep(para.Mwait)
-            if random.randint(0, 100) + player.luck + player.atk > 55:
-                print("You manage to pull free of the mad doctor's grasp and escape")
+            print("You pull and pull, but the doctor's grip on you remains firm")
+            time.sleep(para.Mwait)
+            if random.randint(0, 100) + player.luck + player.atk > 60:
+                print("Eventually, a well placed kick causes him to let go, and you seize the opportunity to escape")
             else:
-                print("combat encounter: doctor")
+                from character_sheets import doctor
+                if fight(doctor):
+                    x = input("The remains of the doctor lie before you\nA: Consume\nB: Loot\nC: Leave\n").lower()
+                    if x == "c":
+                        print("You aren't getting nearer to that psycho")
+                    else:
+                        if random.randint(1,100)+player.luck < 10:
+                            print("As you bend down, you hand is grasped by the doctor!")
+                            time.sleep(para.Mwait)
+                            print("'I don't think so. I'm not done with you yet!'")
+                            fight(doctor)
+
+                        elif x == "a":
+                            print("You consume the doctor")
+                            time.sleep(para.Mwait)
+                            print("He's all juice and no meat")
+                            time.sleep(para.Swait)
+                            print("[Hunger +" + str(para.smallrestore) + "]")
+                            print("[Sanity -" + str(para.largechange) + "]")
+                            player.hunger += para.smallrestore
+                            player.sanity -= para.largechange
+
+                        elif x == "b":
+                            print("You loot the doctor's corpse")
+                            from invmenu import words
+                            time.sleep(para.Mwait)
+                            new = random.randint(0, len(words) - 5)
+                            print("You found some", words[new])
+                            player.inv[words[new]] += 1
+
 
 class sacrificec(encounters):
     def __init__(self):
         super().__init__(16, 101, "sacrifice")
     def text(self):
-        print("Sacrifice health for statboost/lower doom")
+        #print("Sacrifice health for statboost/lower doom")
+        def dud():
+            print("But nothing happens")
+
+        def health():
+            print("You are blessed with improved vitality!")
+            print("[Max Health +1]")
+            player.maxhealth += 1
+
+        def luck():
+            print("You are blessed with good fortune!")
+            print("[Luck +5]")
+            player.luck += 5
+
+        def strength():
+            print("You feel blessed with great strength!")
+            print("[Attack +1]")
+            player.atk += 1
+
+        def gold():
+            print("You look down at your feet, and find yourself blessed with great riches!")
+            print("[Gold +5]")
+            player.gold += 5
+
+        def heal():
+            print("You are blessed with good health!")
+            print("[Health fully restored]")
+            player.health = player.maxhealth
+
+        def sane():
+            print("You are blessed with a clear mind!")
+            print("[Sanity fully restored]")
+            player.sanity = 100
+
+        def full():
+            print("You are blessed with fulfillment!")
+            print("[Hunger fully restored]")
+            player.hunger = 100
+
+        def bad():
+            print("It feels good")
+            print("[Sanity -"+para.smallchange+"]")
+
+
+        print("You find an altar with a large spike protruding from it")
+        time.sleep(para.Mwait)
+        print("You feel the sharp edge of the spike calling out to you")
+        time.sleep(para.Mwait)
+        print("The gods must be appeased")
+        time.sleep(para.Mwait)
+        x = input("A: Sacrifice health\nB: Leave\n").lower()
+        if x == "b":
+            print("It takes all of your mental energy to pull yourself away from the shrine")
+            time.sleep(para.Mwait)
+            print("[Sanity -"+para.smallchange+"]")
+            player.sanity -= para.smallchange
+        else:
+            while True:
+                print("You pierce your hand on the altar, watching as the blood trickles down to the base")
+                time.sleep(para.Swait)
+                print("[Health -1]")
+                player.health -=1
+                time.sleep(para.Lwait)
+                blessings = [dud, health, luck, strength, gold, bad]
+                if player.maxhealth/2 >= player.health:
+                    blessings.append(heal)
+                if 50 >= player.sanity:
+                    blessings.append(sane)
+                if 50 >= player.hunger:
+                    blessings.append(full)
+                blessings[random.randint(0, len(blessings) - 1)]()
+                x = input("A: Sacrifice more\nB: Stop\n").lower()
+                if x == "b":
+                    break
 
 class witchc(encounters):
     def __init__(self):
         super().__init__(16, 101, "witch")
     def text(self):
-        print("Offered a potion which will restore/harm or raise/lower a stat")
+        #print("Offered a potion which will restore/harm or raise/lower a stat")
+        print("You find a rusty shack, tucked away in the alleyways")
+        time.sleep(para.Mwait)
+        print("Upon entering, you find an old hag hunched over a cauldron, cackling wildly")
+        time.sleep(para.Mwait)
+        print("Her face is so covered in warts, that it's impossible to tell if she's even still human or not")
+        time.sleep(para.Mwait)
+        print("Upon spotting you, she grabs a mug and scoops something out of the cauldron, crawling over to you")
+        leave = False
+        time.sleep(para.Mwait)
+        print("'DRINK!'")
+        time.sleep(para.Mwait)
+        x = input("A: Drink\nB: don't drink\n").lower()
+        if x == "b":
+            print("The woman seems quite agitated")
+            time.sleep(para.Mwait)
+            print("'DRINK!'")
+            time.sleep(para.Mwait)
+            x = input("A: Drink\nB: don't drink\n").lower()
+            if x == "b":
+                leave = True
+
+        if leave == False:
+            print("The strange liquid bubbles and froths in the mug")
+            time.sleep(para.Mwait)
+            print("Closing your eyes, you quickly gulp it down")
+
+            def dud():
+                print("The potion is fairly tasteless, and you notice no odd effects")
+
+            def health():
+                print("The potion is thick and hot, with an earthy taste to it")
+                time.sleep(para.Lwait)
+                print("[Max Health +1]")
+                player.maxhealth += 1
+
+            def luck():
+                print("The potion has a tangy, sparkling taste, almost hurting your tongue")
+                time.sleep(para.Lwait)
+                print("[Luck +3]")
+                player.luck += 3
+
+            def strength():
+                print("The potion is overwhelmingly strong, and it takes you all of your effort to resist throwing it back up")
+                time.sleep(para.Lwait)
+                print("[Attack +1]")
+                player.atk += 1
+
+            def lhealth():
+                print("The potion is sickly sweet, sticking to your throat in large globs")
+                time.sleep(para.Lwait)
+                print("[Max Health -1]")
+                player.maxhealth -= 1
+
+            def lluck():
+                print("The potion is a bitter remedy of herbs and animal hair, which gets caught in your throat")
+                time.sleep(para.Lwait)
+                print("[Luck -3]")
+                player.luck -= 3
+
+            def lstrength():
+                print("The potion is extremely salty, and you are filled with nausea")
+                time.sleep(para.Lwait)
+                print("[Attack -1]")
+                player.atk -= 1
+
+            def heal():
+                print("The potion is a flavourful broth which warms your whole body")
+                time.sleep(para.Lwait)
+                print("[Health fully restored]")
+                player.health = player.maxhealth
+
+            def sane():
+                print("The potion is cold and refreshing, with a crisp blue flavour")
+                time.sleep(para.Lwait)
+                print("[Sanity +"+str(para.smallchange)+"]")
+                player.sanity += para.smallchange
+
+            def full():
+                print("The potion turns out to be a delicious stew")
+                time.sleep(para.Lwait)
+                print("[Hunger +" + str(para.smallchange) + "]")
+                player.hunger += para.smallchange
+
+            def lheal():
+                print("The potion is extremely hot, burning your mouth as you drink it")
+                time.sleep(para.Lwait)
+                print("[Health -"+str(para.smallschange)+"]")
+                player.health -= para.smallschange
+
+            def lsane():
+                print("The potion is completely and utterly revolting, you never thought a taste so bad could possibly exist")
+                time.sleep(para.Lwait)
+                print("[Sanity -" + str(para.smallchange) + "]")
+                player.sanity -= para.smallchange
+
+            def lfull():
+                print("The potion has a dull, slightly bitter taste, and makes you feel empty inside as you consume it.")
+                time.sleep(para.Lwait)
+                print("[Hunger -"+str(para.smallchange)+"]")
+
+
+            flavours = [dud, health, luck, strength, lhealth, lluck, lstrength, heal, sane, full, lheal, lsane, lfull]
+            flavours[random.randint(0, len(flavours) - 1)]()
 
 class cultc(encounters):
     def __init__(self):
@@ -1640,24 +1833,6 @@ class cultc(encounters):
     def text(self):
         print("Perform ritual with cult to raise doom or fight members consecutively")
         print("If doom is high, cultists get a stat increase")
-
-class altarc(encounters):
-    def __init__(self):
-        super().__init__(17, 101, "altar")
-    def text(self):
-        print("You come across a mysterious altar")
-        time.sleep(para.Mwait)
-        print("You hear voices calling to you, inviting you to join them")
-        time.sleep(para.Lwait)
-        if player.luck+random.randint(0,100) > 75 == True:
-            print()
-            print("You resist the voices and press on")
-        else:
-            print()
-            print("Your mind wavers, as you feel yourself losing your grip on reality")
-            time.sleep(para.Swait)
-            print("[Sanity -30]")
-            player.sanity -= 30
 
 class crawlerc(encounters):
     def __init__(self):
@@ -1671,15 +1846,17 @@ class mirrorc(encounters):
     def text(self):
         print("You look in the mirror")
         time.sleep(para.Mwait)
-        if player.sanity < 50:
-            print("insane encounter: mimic")
+        if player.sanity <= 50:
+            print("Your reflection lunges at you!")
+            from character_sheets import mimic
+            fight(mimic)
         elif player.luck+random.randint(0,100) > 30 == True:
             print("It's you")
         else:
             print("That's not you")
             time.sleep(para.Swait)
-            print("[Sanity -" + str(para.v.smallchange) + "]")
-            player.sanity -= para.v.smallchange
+            print("[Sanity -" + str(para.smallchange) + "]")
+            player.sanity -= para.smallchange
 
 class hunterc(encounters):
     def __init__(self):
@@ -1691,7 +1868,11 @@ class mimicc(encounters):
     def __init__(self):
         super().__init__(17, 101, "mimic")
     def text(self):
-        print("Combat encounter: mimic")
+        print("You see someone standing in the distance")
+        time.sleep(para.Mwait)
+        print("Wait, is that... You?")
+        from character_sheets import mimic
+        fight(mimic)
 
 class lore3c(encounters):
     def __init__(self):
@@ -1735,11 +1916,11 @@ class amalgamc(encounters):
     def text(self):
         print("Combat encounter: Amalgam")
 
-class angelc(encounters):
-    def __init__(self):
-        super().__init__(35, 50, "angel")
-    def text(self):
-        print("Combat encounter: Angel")
+# class angelc(encounters):
+#     def __init__(self):
+#         super().__init__(35, 50, "angel")
+#     def text(self):
+#         print("Combat encounter: Angel")
 
 class gods_callingc(encounters):
     def __init__(self):
@@ -1757,13 +1938,8 @@ class gods_callingc(encounters):
             print("S̷̗̪̆͗U̷͓̚͝F̷̲̒F̷̩͕̄̕Ḙ̷̡͠R̶͖̂ ̸̹̗̂F̷̮̦͝O̷̰̎R̴̡̖̃ ̴̳̓̓Ṁ̴̹͍E̷̠͌ͅ")
         if random.randint(0,100)+ player.luck > 75:
             print("You cast  them out of your head and press on")
-            time.sleep(para.Mwait)
-            print("You won't let them try to control you anymore")
-            time.sleep(para.Mwait)
-            print("Sanity fully restored")
-            Sanity = 100
         else:
-            print("You shakily draw a knife and plunge it into your stomach")
+            print("You shakily draw a knife and plunge it into your chest")
             time.sleep(para.Mwait)
             print("[Health -" + str(player.atk) + "]")
             player.health -= player.atk
@@ -1800,11 +1976,13 @@ class skinwalkerc(encounters):
     def text(self):
         print("Combat encounter: skinwalker")
 
-class HADc(encounters):
-    def __init__(self):
-        super().__init__(40, 101, "H.A.D")
-    def text(self):
-        print("Combat encounter: H.A.D")
+# class HADc(encounters):
+#     def __init__(self):
+#         super().__init__(40, 101, "H.A.D")
+#     def text(self):
+#         print("Combat encounter: H.A.D")
+
+
 
 
 def stalk5():
@@ -1875,12 +2053,12 @@ stalker = stalkerc()
 blackcat = blackcatc()
 rest = restc()
 mugging = muggingc()
-mansion = mansionc()
+#mansion = mansionc()
 doctor = doctorc()
 sacrifice = sacrificec()
 witch = witchc()
 cult = cultc()
-altar = altarc()
+#altar = altarc()
 crawler = crawlerc()
 mirror = mirrorc()
 hunter = hunterc()
@@ -1892,17 +2070,17 @@ amigara = amigarac()
 holes = holesc()
 savior = saviorc()
 amalgam = amalgamc()
-angel = angelc()
+#angel = angelc()
 gods_calling = gods_callingc()
 maskedbase = maskedbasec()
 terror = terrorc()
 doll = dollc()
 hydra = hydrac()
 skinwalker = skinwalkerc()
-HAD = HADc()
+#HAD = HADc()
 
 #encounters = different events which can occur
-eventable = [flavour, Nsaneflavour, eldritchvisions, foodfind, bandagefind, pillfind, goldfind, itemfind, stargaze, slime, zombie, shadow, lootcorpse, lore1, shrine, konami, deersac, drink, batter, gnasher, sorrow, tunnelchase, shop, lore2, raven, stalker,  blackcat, rest, mugging, mansion, doctor, sacrifice, cult, altar, fleshortcut, hunter, crawler, mirror, mimic, witch, lore3, trap, amigara, amalgam, angel, gods_calling, maskedbase, terror, savior, doll, hydra, skinwalker, HAD]
+eventable = [flavour, Nsaneflavour, eldritchvisions, foodfind, bandagefind, pillfind, goldfind, itemfind, stargaze, slime, zombie, shadow, lootcorpse, lore1, shrine, konami, deersac, drink, batter, gnasher, sorrow, tunnelchase, shop, lore2, raven, stalker,  blackcat, rest, mugging, doctor, sacrifice, cult, fleshortcut, hunter, crawler, mirror, mimic, witch, lore3, trap, amigara, amalgam, gods_calling, maskedbase, terror, savior, doll, hydra, skinwalker]
 last = ""
 
 from parameters import stalking
@@ -1914,6 +2092,7 @@ def encounterpick(event):
         if misc.difficulty >= eventable[i].diff and player.sanity <= eventable[i].san and eventable[i] != event:
             validevents.append(eventable[i])
     event = validevents[random.randint(0, len(validevents) - 1)]
-    event.text()
+    #event.text()
+    gods_calling.text()
     return (event)
 #

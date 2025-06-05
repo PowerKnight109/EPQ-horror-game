@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="Encounters up to mugging are done, excluding black cat">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/Horror_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/Horror_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/character_sheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/character_sheets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/combat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/combat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/encounters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/encounters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/newtemp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/ending.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/parameters.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;PowerKnight109&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/PowerKnight109/EPQ-horror-game.git&quot;,
+    &quot;accountId&quot;: &quot;9905ee5d-4832-4765-b1a6-b1b9014fa2fe&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2uztUGOenYgZF0gzZB5HKGECIP1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Horror_game.executor": "Run",
+    "Python.Inventory.executor": "Run",
+    "Python.Main.executor": "Run",
+    "Python.Temporary.executor": "Run",
+    "Python.character_sheets.executor": "Run",
+    "Python.combat.executor": "Run",
+    "Python.encounters.executor": "Run",
+    "Python.invmenu.executor": "Run",
+    "Python.newtemp.executor": "Run",
+    "Python.parameters.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/alexa/PycharmProjects/EPQ-horror-game/Horror Game 0.6",
+    "settings.editor.selected.configurable": "editor.stickyLines"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alexa\PycharmProjects\EPQ-horror-game\Horror Game 0.5" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="" />
+      <created>1743263244702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743263244702</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Changed the encounters and removed some stuff which doesn't work with the new system. Game doesn't currently work though, as &quot;playername&quot; doesn't seem to be getting imported into the player's stats">
+      <option name="closed" value="true" />
+      <created>1743264898156</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743264898156</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changed the encounters and removed some stuff which doesn't work with the new system. Game doesn't currently work though, as &quot;playername&quot; doesn't seem to be getting imported into the player's stats">
+      <option name="closed" value="true" />
+      <created>1743265199023</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743265199023</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changed the encounters and removed some stuff which doesn't work with the new system. Game doesn't currently work though, as &quot;playername&quot; doesn't seem to be getting imported into the player's stats">
+      <option name="closed" value="true" />
+      <created>1747214933180</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747214933180</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changed the encounters and removed some stuff which doesn't work with the new system. Game doesn't currently work though, as &quot;playername&quot; doesn't seem to be getting imported into the player's stats">
+      <option name="closed" value="true" />
+      <created>1747214944602</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747214944602</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed the issues with playername, as well as some other bugs, so the game now runs without syntax errors.&#10;&#10;I'm not sure how to run the text part of the encounters though.">
+      <option name="closed" value="true" />
+      <created>1747215406492</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747215406494</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed the issues with playername, as well as some other bugs, so the game now runs without syntax errors.&#10;&#10;I'm not sure how to run the text part of the encounters though.">
+      <option name="closed" value="true" />
+      <created>1747215443251</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747215443251</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Lots of bug fixes, tried to get an inventory working">
+      <option name="closed" value="true" />
+      <created>1747234975296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747234975296</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Lots of bug fixes, tried to get an inventory working">
+      <option name="closed" value="true" />
+      <created>1747235033601</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747235033601</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Made a working inventory, code for all items has not been fully implemented yet">
+      <option name="closed" value="true" />
+      <created>1747256505074</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747256505074</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Finished the first few encounters of the game">
+      <option name="closed" value="true" />
+      <created>1747382167984</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747382167984</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Finished the first few encounters of the game">
+      <option name="closed" value="true" />
+      <created>1747382362824</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747382362824</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Finished the first few encounters of the game">
+      <option name="closed" value="true" />
+      <created>1747416719230</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747416719230</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added images to encounters, post fight interactions, and started pre-fight interactions">
+      <option name="closed" value="true" />
+      <created>1747416799300</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747416799300</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Finished pre-fight interactions, started working on gnasher enemy">
+      <option name="closed" value="true" />
+      <created>1747499119276</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747499119276</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Started coding the remaining encounters">
+      <option name="closed" value="true" />
+      <created>1747986696634</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747986696634</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Encounters up to mugging are done, excluding black cat">
+      <option name="closed" value="true" />
+      <created>1748959012612</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1748959012612</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Encounters up to mugging are done, excluding black cat">
+      <option name="closed" value="true" />
+      <created>1748959135546</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1748959135546</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changed the encounters and removed some stuff which doesn't work with the new system. Game doesn't currently work though, as &quot;playername&quot; doesn't seem to be getting imported into the player's stats" />
+    <MESSAGE value="Fixed the issues with playername, as well as some other bugs, so the game now runs without syntax errors.&#10;&#10;I'm not sure how to run the text part of the encounters though." />
+    <MESSAGE value="Lots of bug fixes, tried to get an inventory working" />
+    <MESSAGE value="Made a working inventory, code for all items has not been fully implemented yet" />
+    <MESSAGE value="Finished the first few encounters of the game" />
+    <MESSAGE value="Added images to encounters, post fight interactions, and started pre-fight interactions" />
+    <MESSAGE value="Finished pre-fight interactions, started working on gnasher enemy" />
+    <MESSAGE value="Started coding the remaining encounters" />
+    <MESSAGE value="Encounters up to mugging are done, excluding black cat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Encounters up to mugging are done, excluding black cat" />
+  </component>
+</project>

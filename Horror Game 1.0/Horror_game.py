@@ -38,11 +38,17 @@ def gameloop():
     while misc.distance < 50 and player.health > 0 and player.hunger >= 0 and player.sanity > 0:
         time.sleep(para.Swait)
         precount = player.inv["charm"]
+        if player.health > player.maxhealth:
+            player.health = player.maxhealth
+        if player.sanity > 100:
+            player.sanity = 100
+        if player.hunger > 100:
+            player.hunger = 100
         print("\n\n\n\n\nYou have traveled", misc.distance, "meters")
         print("Health:", str(player.health) + "/" + str(player.maxhealth))
         print("Hunger:", player.hunger)
         print("Sanity:", player.sanity)
-        #print("press enter to step forward")
+        print("press enter to step forward")
         print("enter 'I' to access inventory")
         proceed = input().lower()
 
@@ -64,16 +70,17 @@ def gameloop():
             if player.inv["charm"] < precount:
                 player.luck -= 1
 
-            time.sleep(para.Mwait)
             from parameters import stalking
             if stalking.switch == True:
+                time.sleep(para.Mwait)
                 stalking.text[stalking.counter]()
                 stalking.counter += 1
 
 
-def ending():
+def gamend():
     if misc.distance >= 50:
-        print("You made it!")
+        from ending import ZathKopchyla
+        ZathKopchyla()
 
     elif player.hunger <= 0:
         print("Your hunger has grown too great and cannot be ignored any longer")

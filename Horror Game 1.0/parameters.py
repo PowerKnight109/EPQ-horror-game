@@ -9,7 +9,7 @@ class misc:
 #stalking = Determines whether the player is being stalked
 #distance = The players current distance and difficulty
 
-misc = misc(False, False, 1, 1)
+misc = misc(False, False, 0, 1)
 
 
 
