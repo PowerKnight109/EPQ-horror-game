@@ -88,7 +88,6 @@ class itemfindc(encounters):
         new = random.randint(0, len(words) - 5)
         print("You found some", words[new])
         player.inv[words[new]] += 1
-        time.sleep(para.Mwait)
 
 class stargazec(encounters):
     def __init__(self):
@@ -224,7 +223,7 @@ class lootcorpsec(encounters):
         if choice == "c":
             print("You aren't going to risk it")
         else:
-            if random.randint(1, 100) + player.luck > 25 - (misc.difficulty / 10):
+            if random.randint(1, 100) + player.luck > 30 - (misc.difficulty / 10):
                 if choice == "a":
                     print("You loot the corpse for items")
                     time.sleep(para.Mwait)
@@ -232,11 +231,11 @@ class lootcorpsec(encounters):
                     new = random.randint(0, len(words)-5)
                     print("You found some", words[new])
                     player.inv[words[new]] +=1
-                    time.sleep(para.Mwait)
-                    print("You can't get the image of their lifeless face out of your head")
-                    time.sleep(para.Mwait)
-                    print("[Sanity -"+str(para.smallchange)+"]")
-                    player.sanity -= para.smallchange
+                    # time.sleep(para.Mwait)
+                    # print("You can't get the image of their lifeless face out of your head")
+                    # time.sleep(para.Mwait)
+                    # print("[Sanity -"+str(para.smallchange)+"]")
+                    # player.sanity -= para.smallchange
 
                 elif choice == "b":
                     print("Are you really going to resort to cannibalism?")
@@ -273,21 +272,17 @@ class lore1c(encounters):
         read = input("Read it?\nA: Yes\nB: No\n").lower()
         if read == "a":
             print('                          "POWER CRISIS SAVED!"')
-            time.sleep(para.Mwait)
+            #time.sleep(para.Mwait)
             print("'For all to long now, Arkham City has been plagued by a looming issue hanging over all our heads'")
-            time.sleep(para.Mwait)
-            print(
-                "'One that, in spite of our best scientist's work, has continued to evade us, as we draw ever closer to certain doom.'")
-            time.sleep(para.Mwait)
-            print(
-                "'I am of course talking about the Great Energy Crisis, and our city's struggle to find new energy sources to sustain itself, while our remaining stores rapidly wither away.'")
-            time.sleep(para.Mwait)
-            print(
-                "'While we were thought to run out in 50 years, worry not! Vexon Industries, a superpower in the oil drilling industry claims that it has uncovered a new, renewable source of energy which can last us for generations!'")
-            time.sleep(para.Mwait)
-            print(
-                "'This new type of energy, which they have dubbed 'zathene energy' was discovered in one of their plants off the east coast, and is reportedly 'fully renewable', producing 'trillions of gigajoules of energy per second'")
-            time.sleep(para.Mwait)
+            #time.sleep(para.Mwait)
+            print("'One that, in spite of our best scientist's work, has continued to evade us, as we draw ever closer to certain doom.'")
+           # time.sleep(para.Mwait)
+            print("'I am of course talking about the Great Energy Crisis, and our city's struggle to find new energy sources to sustain itself, while our remaining stores rapidly wither away.'")
+           # time.sleep(para.Mwait)
+            print("'While we were thought to run out in 50 years, worry not! Vexon Industries, a superpower in the oil drilling industry claims that it has uncovered a new, renewable source of energy which can last us for generations!'")
+            #time.sleep(para.Mwait)
+            print("'This new type of energy, which they have dubbed 'zathene energy' was discovered in one of their plants off the east coast, and is reportedly 'fully renewable', producing 'trillions of gigajoules of energy per second'")
+            #time.sleep(para.Mwait)
             print("'At last, the people of Arkham can sleep soundly at night, knowing that their future is safe.'")
         else:
             print("There's no time")
@@ -321,7 +316,7 @@ class shrinec(encounters):
                 time.sleep(para.Swait)
                 print("[Luck +" + str(a) + "]")
         elif shrine == "b":
-            if player.inv.food > 0:
+            if player.inv["meat"] > 0:
                 print("How much food will you offer?\n(type 0 to go back)")
                 a = int(input())
                 if a > player.inv["meat"]:
@@ -437,7 +432,9 @@ class drinkc(encounters):
                 print("Cool, refreshing water flows down the tap, revitalising your body and mind")
                 time.sleep(para.Mwait)
                 print("[Sanity +" + str(para.smallchange) + "]")
+                print("[Health +1]")
                 player.sanity += para.smallchange
+                player.health += para.smallhprestore
             else:
                 print("The faucet turns on, but it doesn't produce water")
                 time.sleep(para.Mwait)
@@ -447,11 +444,11 @@ class drinkc(encounters):
                 player.sanity -= para.smallchange
         else:
             print("You decide to ignore it, the water isn't safe.")
-            time.sleep(para.Mwait)
-            print("But your thirst has become dire, and you find yourself growing weaker because of it")
-            time.sleep(para.Mwait)
-            print("[Health -" + str(para.smallschange) + "]")
-            player.health -= para.smallschange
+            #time.sleep(para.Mwait)
+            # print("But your thirst has become dire, and you find yourself growing weaker because of it")
+            # time.sleep(para.Mwait)
+            # print("[Health -" + str(para.smallschange) + "]")
+            # player.health -= para.smallschange
 
 class deersacc(encounters):
     def __init__(self):
@@ -559,7 +556,7 @@ class batterc(encounters):
             from character_sheets import batter
             if fight(batter) == True:
                 batter.health = batter.maxhealth
-                x = input("The corpse of the masked man lies before you\nA: consume\nB: loot\nC:leave\n").lower()
+                x = input("The corpse of the masked man lies before you\nA: consume\nB: loot\nC: leave\n").lower()
                 if x == "c":
                     print("You proceed forwards")
                 else:
@@ -587,7 +584,7 @@ class batterc(encounters):
                             time.sleep(para.Lwait)
                             #restore("Hunger", player.hunger, para.largerestore, 100)
                             player.hunger += para.largerestore
-                            print("[Hunger restored by", str(player.largerestore) + "]")
+                            print("[Hunger restored by", str(para.largerestore) + "]")
                             print("[Sanity -30]")
                             player.sanity -= 30
 
@@ -607,9 +604,9 @@ class shopc(encounters):
         time.sleep(para.Mwait)
         print("Her eyes widen as they fix their gaze on you")
         time.sleep(para.Swait)
-        print("PlEaSsSse, FeEl FrEe To BrOwSe My WaReSsS!")
+        print("'PlEaSsSse, FeEl FrEe To BrOwSe My WaReSsS!'")
         time.sleep(para.Swait)
-        print("A: Shop\nB:Leave\n")
+        print("A: Shop\nB: Leave\n")
         x = input().lower()
         if x == "a":
             while True:
@@ -762,12 +759,13 @@ class gnasherc(encounters):
             if fight(gnasher):
                 print("The lifeless body of the gnasher lies before you")
                 time.sleep(para.Swait)
-                x = input("A: Consume\n B: Follow monster's trail\n C: Continue\n").lower()
+                x = input("A: Consume\nB: Follow monster's trail\nC: Continue\n").lower()
                 if x == "a":
                     print("You close your eyes and begin to consume the gnasher, imagining the carrion before you as something more appetizing")
                     time.sleep(para.Mwait)
                     print("Alas, no amount of fantasy can mask the foul taste that permeates your tongue")
                     time.sleep(para.Swait)
+                    player.hunger += para.largerestore
                     print("[Hunger +"+ str(para.largerestore)+"]")
                     player.sanity -= para.largechange
                     print("[Sanity -"+str(para.largechange)+"]")
@@ -793,14 +791,13 @@ class gnasherc(encounters):
 
                     else:
                         print("You follow the monster's trail for what seems like ages, but you end up back where you started.")
-                        print("[Hunger -"+(para.smallchange)+"]")
+                        print("[Hunger -"+str(para.smallchange)+"]")
                         player.hunger -= para.smallchange
 
 class sorrowc(encounters):
     def __init__(self):
         super().__init__(10, 101, "sorrow")
     def text(self):
-        print("Combat encounter: sorrow")
         print("You see a figure kneeling on the ground")
         time.sleep(para.Mwait)
         print("Their body is wrapped in chains extending out from the walls and floor")
@@ -1027,143 +1024,144 @@ class lore2c(encounters):
                 contents = input("\nWhich section will you go to?\nA: Physical properties\nB: Source of energy\nC: Potential risks\nD: Stop reading\n").lower()
                 if contents == "a":
                     print("'Physical properties of Zathene energy'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print('"In its base form, Zathene energy exists as a plasma of positively charged particles invisible to the naked eye"')
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("'However, while it cannot be seen, it can still be percieved'")
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("'People exposed to Zathene energy in its uncatalysed state have been able to detect it, not through any known sensory organ but instead through 'their soul'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("'They have often described the feeling it causes as spiritual or mystic, speaking to them in a way which cannot be explained through science'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("'I suggest such claims should be taken critically, as all to often such 'religious phenomena' are simply the result of natural processes and human fantasy'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("\n'Its most notable property however, is its reaction once stimulated with a negative charge'")
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("'When the two meet, the Zathene energy will undergo an explosive reaction, rapidly heating up and taking on a bright purple colouration'")
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("'In this form, its appearance is quite similar to that of electricity'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("'This new form is extremely charged with energy, which it will immediately try to get rid of by discharging into its surroundings'")
-                    time.sleep(para.Mwait)
+                 #   time.sleep(para.Mwait)
                     print("'By surrounding it with conductors, this energy can be harvested and transferred through the grid to use as power'")
-                    time.sleep(para.Mwait)
+                #    time.sleep(para.Mwait)
                     print("'Whats truly amazing, is the amount of energy output far exceeds the amount of energy needed to generate negative charge for it'")
-                    time.sleep(para.Mwait)
+                 #   time.sleep(para.Mwait)
                     print("'By all accounts this should be scientifically impossible, and yet this new substance seems to have achieved it'")
-                    time.sleep(para.Mwait)
+                  #  time.sleep(para.Mwait)
                     print("'Conclusion: Further testing is required'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
 
                 if contents == "b":
                     print("'The source of Zathene energy'")
-                    time.sleep(para.Mwait)
+                 #   time.sleep(para.Mwait)
                     print("'As was revealed to the press, Zathene energy was reportedly discovered by Vexon industries at one of their oil drilling plants off the east coast of Arkham'")
-                    time.sleep(para.Mwait)
+                 #   time.sleep(para.Mwait)
                     print("'However, what was not revealed was the form they found this energy in'")
-                    time.sleep(para.Mwait)
+                #    time.sleep(para.Mwait)
                     print("'What Vexon industries found was not an isolated cluster of Zathene energy, but instead a large stone obelisk- which the energy surrounded'")
-                    time.sleep(para.Mwait)
+               #     time.sleep(para.Mwait)
                     print("'What Vexon industries found was not an isolated cluster of Zathene energy, but instead a large stone obelisk- which the energy surrounded'")
-                    time.sleep(para.Mwait)
+                  #  time.sleep(para.Mwait)
                     print("'I was lucky enough to be permitted access to the obelisk in order to conduct further tests, in which I made a number of interesting discoveries.'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("'The obelisk itself is quite peculiar in appearance, containing numerous illustrations and symbols etched into it in a language I do not understand'")
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("'But what was even more peculiar, was what I found when I began studying it'")
-                    time.sleep(para.Mwait)
+                 #   time.sleep(para.Mwait)
                     print("'First of all, the obelisk did not attract Zathene energy like I had initially thought. Instead, it seemed to actively repel it away from itself'")
-                    time.sleep(para.Mwait)
+                  #  time.sleep(para.Mwait)
                     print("'The reason why so much Zathene energy was detected around the obelisk was instead because the obelisk appeared to be actively producing the energy and distributing it to its surroundings.'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("'This came as quite a shock to me. While Zathene energy had already displayed its exemption from the laws of conservation with its reactive properties, that was entirely different from an object of solid stone seemingly defying everything we knew about it.'")
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("'Luckily, Vexon Industries also lent me access to their laboratory to further study the obelisk for the rest of the month'")
-                    time.sleep(para.Mwait)
+         #           time.sleep(para.Mwait)
                     print("'Upon studying the obelisk more thoroughly over the course of the month, I made several more interesting discoveries'")
-                    time.sleep(para.Mwait)
+          #          time.sleep(para.Mwait)
                     print("'Namely:'")
-                    time.sleep(para.Mwait)
+           #         time.sleep(para.Mwait)
                     print("'- While its properties may seem similar to a rock, the obelisk's atomic structure does not match any known stone or other material in our universe'")
-                    time.sleep(para.Mwait)
+            #        time.sleep(para.Mwait)
                     print("'- Additionally, when inspecting the obelisk's surface, I discovered high quantities of dark matter clustured around it.")
-                    time.sleep(para.Mwait)
+             #       time.sleep(para.Mwait)
                     print("\n'The presence of this unidentifiable material, the presence of dark matter on it's surface, as well as it seemingly emitting endless amounts of zathene energy have led me to believe this obelisk may be a gateway to an alternate universe'")
-                    time.sleep(para.Mwait)
+              #      time.sleep(para.Mwait)
                     print("'For whatever reason, this obelisk appears to be a meeting point between the two worlds, leading to energy from one universe leaking out into the other'")
-                    time.sleep(para.Mwait)
+               #     time.sleep(para.Mwait)
                     print("'This means that we should be continually supplied with energy until the other universe runs out, which will take a googol amount of years.'")
-                    time.sleep(para.Mwait)
+                #    time.sleep(para.Mwait)
                     print("'In layman's turns, we have a practically infinite amount of energy which we can use'")
-                    time.sleep(para.Mwait)
+                 #   time.sleep(para.Mwait)
                     print("'The existence of other universes is a groundbreaking discovery, which could propel us millions of years forward in technology'")
-                    time.sleep(para.Mwait)
+                  #  time.sleep(para.Mwait)
                     print("'Further testing is highly anticipated'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
                     print("\n'Additionally over the course of my studies, I noticed that the obelisk's output of zathene energy had been gradually increasing overtime'")
-                    time.sleep(para.Mwait)
+                    #time.sleep(para.Mwait)
                     print("\n'This is most likely not cause for concern, though I decided reported it to Vexon Industries' head supervisor as a precaution'")
-                    time.sleep(para.Mwait)
+                   # time.sleep(para.Mwait)
 
                 if x == "c":
                     print("'Potential risks of Zathene energy'")
-                    time.sleep(para.Mwait)
+#                    time.sleep(para.Mwait)
                     print("'While many have been rejoicing the discovery of Zathene energy and resolution to Arkham's power crisis, other's have remained skeptical, questioning the safety of such a new and unknown power source'")
-                    time.sleep(para.Mwait)
+ #                   time.sleep(para.Mwait)
                     print("'I cannot blame them, after all, skepticism sparks research and new discoveries- which is why I decided to run some experiments on the dangers of Zathene energy myself'")
-                    time.sleep(para.Mwait)
+  #                  time.sleep(para.Mwait)
                     print("'First, I exposed 3 mice to a low dosage of zathene energy for a 24 hours'")
-                    time.sleep(para.Mwait)
+   #                 time.sleep(para.Mwait)
                     print("'When first exposed, the mice responded with fear and distress, perhaps from not knowing the cause of the spiritual sensation zathene enrgy is known to trigger'")
-                    time.sleep(para.Mwait)
+    #                time.sleep(para.Mwait)
                     print("'By the end of the 24 hours however, the mice had returned to normal behavior, with no long-lasting changes'")
-                    time.sleep(para.Mwait)
+     #               time.sleep(para.Mwait)
                     print("'Upon seeing this, I decided to up the dosage of zathene energy they were exposed to and return in another 24 hours'")
-                    time.sleep(para.Mwait)
+      #              time.sleep(para.Mwait)
                     print("'This seemed to have the opposite effect. While at first, none of the mice exhibited any changes in behaviour, when I came back at the end of the day, I found 2 of the 3 mice dead, seemingly killed and eaten by the survivor.'")
-                    time.sleep(para.Mwait)
+       #             time.sleep(para.Mwait)
                     print("'I tested by suspicions by introducing two more mice to the cage, and sure enough, the infected mouse killed both of them as soon as they entered the cage'")
-                    time.sleep(para.Mwait)
+        #            time.sleep(para.Mwait)
                     print("'I then decided to introduce a cat into the cage. Similar to with the mice before, the infected mouse showed high levels of aggression and tried to attack the cat as soon as it was introduced'")
-                    time.sleep(para.Mwait)
+         #           time.sleep(para.Mwait)
                     print("'Ultimately, the cat was able to kill the mouse, but not without sustaining heavy injuries'")
-                    time.sleep(para.Mwait)
+          #          time.sleep(para.Mwait)
                     print("'Interested in seeing what could happen at even higher exposure levels, I repeated my experiment with 3 new mice, increasing the exposure to 10x the levels of before.'")
-                    time.sleep(para.Mwait)
+           #         time.sleep(para.Mwait)
                     print("'Immediately, the mice appeared to fall under extreme pain, though I decided to once again wait the full 24 hours to see what the effects would be'")
-                    time.sleep(para.Mwait)
+            #        time.sleep(para.Mwait)
                     print("'When I returned, I was met with a gruesome sight. One of the mice had murdered the other two, following my expectations. What I hadn't expected however, was that the zathene energy had forcibly mutated the mouse, causing several changes to occur on its body'")
-                    time.sleep(para.Mwait)
+             #       time.sleep(para.Mwait)
                     print("''These changes were but not limited to:''")
-                    time.sleep(para.Mwait)
+              #      time.sleep(para.Mwait)
                     print(" '- Increased size'")
-                    time.sleep(para.Swait)
+               #     time.sleep(para.Swait)
                     print(" '- The growth of additional rows of sharp teeth'")
-                    time.sleep(para.Swait)
+                #    time.sleep(para.Swait)
                     print(" '- Sharpened claws'")
-                    time.sleep(para.Swait)
+                 #   time.sleep(para.Swait)
                     print(" '- Yellow discolouration of the eyes'")
-                    time.sleep(para.Swait)
+                  #  time.sleep(para.Swait)
                     print(" '- Growth of additional eyes on its back and forehead'")
-                    time.sleep(para.Swait)
+                   # time.sleep(para.Swait)
                     print("'- Malformed snout'")
-                    time.sleep(para.Swait)
+#                    time.sleep(para.Swait)
                     print("'- Overproduction and build up of bodily fluids'")
-                    time.sleep(para.Swait)
+ #                   time.sleep(para.Swait)
                     print("'- Large swelling and tumour growth all over the body'")
-                    time.sleep(para.Mwait)
+  #                  time.sleep(para.Mwait)
                     print("\n'The mouse also displayed even higher levels of aggression than before, even trying to attack me through the glass window in its enclosure'")
-                    time.sleep(para.Mwait)
+   #                 time.sleep(para.Mwait)
                     print("'Thankfully, as the glass was bulletproof, it was not able to succeed, and I was able to euthanise the creature by flooding its cage with carbon monoxide'")
-                    time.sleep(para.Mwait)
+    #                time.sleep(para.Mwait)
                     print("\n'In conclusion, while seemingly harmless in small doses, prolonged exposure to large doses of zathene energy appear to cause extreme amounts of aggression in the individual, and even mutating them if the dosage is high enough'")
-                    time.sleep(para.Mwait)
+     #               time.sleep(para.Mwait)
                     print("'However, as the experiment was only conducted on mice, it is currently unknown if the same results could apply to larger animals such as humans'")
-                    time.sleep(para.Mwait)
+      #              time.sleep(para.Mwait)
                     print("'Overall, I would suggest to exercise caution around the implementation of zathene energy, and will be reporting my findings to the head of Vexon Industries'")
 
                 elif contents == "d":
                     print("Research papers are boring")
+                    break
 
 class stalkerc(encounters):
     def __init__(self):
@@ -1230,9 +1228,11 @@ class restc(encounters):
         time.sleep(para.Mwait)
         print("When you wake up, you feel reinvigorated and ready to take on the world")
         time.sleep(para.Mwait)
+        player.maxhealth += 1
         player.health = player.maxhealth
         player.hunger -= para.smallchange
         player.sanity += para.smallrestore
+        print("[Max Health +1]")
         print("[Health fully restored]")
         print("[Sanity +"+str(para.smallrestore)+"]")
         print("[Hunger -"+str(para.smallchange)+"]")
@@ -1866,7 +1866,7 @@ class hunterc(encounters):
 
 class mimicc(encounters):
     def __init__(self):
-        super().__init__(17, 101, "mimic")
+        super().__init__(17, 50, "mimic")
     def text(self):
         print("You see someone standing in the distance")
         time.sleep(para.Mwait)
@@ -1908,7 +1908,66 @@ class saviorc(encounters):
     def __init__(self):
         super().__init__(30, 101, "savior")
     def text(self):
-        print("Fight consecutive battles and be rewarded or ignore at sanity cost")
+        #print("Fight consecutive battles and be rewarded or ignore at sanity cost")
+        print("You hear a scream ringing out from further ahead")
+        time.sleep(para.Mwait)
+        print("Rushing towards it, you find another survivor being attacked!")
+        time.sleep(para.Mwait)
+        print("Intervene and save the civilian?")
+        time.sleep(para.Swait)
+        save = input("A: Yes\nB: It's too risky\n").lower()
+        if save == "a":
+            enemies = ["stalker", "gang", "mutants", "skinwalker"]
+            monster = enemies[random.randint(0, 3)]
+            win = False
+            if monster == "stalker":
+                from character_sheets import stalker
+                if fight(stalker):
+                    win = True
+            elif monster == "gang":
+                from character_sheets import batter
+                if fight(batter):
+                    print("The second masked man approaches!")
+                    if fight(batter):
+                        print("You attack the final masked man!")
+                        if fight(batter):
+                            win = True
+
+            elif monster == "mutants":
+                from character_sheets import gnasher, zombie
+                if fight(gnasher):
+                    print("A second monster approaches!")
+                    if fight(gnasher):
+                        print("You attack the final monster!")
+                        if fight(zombie):
+                            win = True
+
+            elif monster == "skinwalker":
+                from character_sheets import skinwalker
+                if fight(skinwalker):
+                    win = True
+
+            if win == True:
+                print("The survivor turns to you")
+                time.sleep(para.Mwait)
+                print("'Thank you so much!'")
+                print("'Here, take some of my supplies. I know it's not much, but I hope this can repay you'")
+                time.sleep(para.Mwait)
+                print("[Gold +2]")
+                print("[Meat +1]")
+                print("[Pills +1]")
+                print("[Bandages +1]")
+                player.gold += 2
+                player.meat += 1
+                player.pills += 1
+                player.bandages += 1
+                time.sleep(para.Lwait)
+                print("However, the survivor's face grows pale as they look upon your face")
+                time.sleep(para.Mwait)
+                print("'Wait, you're not... Oh god'")
+                time.sleep(para.Mwait)
+                print("With a terrified expression on their face, the survivor flees!")
+
 
 class amalgamc(encounters):
     def __init__(self):
@@ -2075,12 +2134,12 @@ gods_calling = gods_callingc()
 maskedbase = maskedbasec()
 terror = terrorc()
 doll = dollc()
-hydra = hydrac()
+#hydra = hydrac()
 skinwalker = skinwalkerc()
 #HAD = HADc()
 
 #encounters = different events which can occur
-eventable = [flavour, Nsaneflavour, eldritchvisions, foodfind, bandagefind, pillfind, goldfind, itemfind, stargaze, slime, zombie, shadow, lootcorpse, lore1, shrine, konami, deersac, drink, batter, gnasher, sorrow, tunnelchase, shop, lore2, raven, stalker,  blackcat, rest, mugging, doctor, sacrifice, cult, fleshortcut, hunter, crawler, mirror, mimic, witch, lore3, trap, amigara, amalgam, gods_calling, maskedbase, terror, savior, doll, hydra, skinwalker]
+eventable = [flavour, Nsaneflavour, eldritchvisions, foodfind, bandagefind, pillfind, goldfind, itemfind, stargaze, slime, zombie, shadow, lootcorpse, lore1, shrine, konami, deersac, drink, batter, gnasher, sorrow, tunnelchase, shop, lore2, raven, stalker,  blackcat, rest, mugging, doctor, sacrifice, cult, fleshortcut, hunter, crawler, mirror, mimic, witch, lore3, trap, amigara, amalgam, gods_calling, maskedbase, terror, savior, doll, skinwalker]
 last = ""
 
 from parameters import stalking
@@ -2092,7 +2151,6 @@ def encounterpick(event):
         if misc.difficulty >= eventable[i].diff and player.sanity <= eventable[i].san and eventable[i] != event:
             validevents.append(eventable[i])
     event = validevents[random.randint(0, len(validevents) - 1)]
-    #event.text()
-    gods_calling.text()
+    event.text()
     return (event)
 #

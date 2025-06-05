@@ -4,20 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="Encounters up to mugging are done, excluding black cat">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/Horror_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/Horror_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/character_sheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/character_sheets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/combat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/combat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/encounters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/encounters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/newtemp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/ending.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Horror Game 0.9/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 0.9/parameters.py" afterDir="false" />
+    <list default="true" id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="Added an ending to the game">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 1.0/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 1.0/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 1.0/character_sheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 1.0/character_sheets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 1.0/combat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 1.0/combat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Horror Game 1.0/encounters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Horror Game 1.0/encounters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../Horror Game 0.6\exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -64,6 +64,7 @@
     "Python.invmenu.executor": "Run",
     "Python.newtemp.executor": "Run",
     "Python.parameters.executor": "Run",
+    "Python.temp3.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -228,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748959135546</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added an ending to the game">
+      <option name="closed" value="true" />
+      <created>1749109364394</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1749109364394</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,6 +261,7 @@
     <MESSAGE value="Finished pre-fight interactions, started working on gnasher enemy" />
     <MESSAGE value="Started coding the remaining encounters" />
     <MESSAGE value="Encounters up to mugging are done, excluding black cat" />
-    <option name="LAST_COMMIT_MESSAGE" value="Encounters up to mugging are done, excluding black cat" />
+    <MESSAGE value="Added an ending to the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an ending to the game" />
   </component>
 </project>

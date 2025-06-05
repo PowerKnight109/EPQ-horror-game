@@ -1,9 +1,9 @@
 def main():
     from Horror_game import intro
     import time
-    print(intro())
+    #intro()
     from Horror_game import gameloop
-    print(gameloop())
+    gameloop()
     from Horror_game import gamend
     time.sleep(1.5)
     gamend()

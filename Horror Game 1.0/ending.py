@@ -140,21 +140,25 @@ def ZathKopchyla():
     floors = [sanitycheck, hungercheck, concheck, luckcheck, strengthcheck, goldcheck]
 
     print("\n[WARNING: This is the final stretch. It is highly recommended you use any items to ensure your stats are high before proceeding]")
-    for i in range(3):
+    floor = 0
+    while True:
         if player.health < 1:
             break
-        print("You are on floor", str(i+1))
+        print("You are on floor", floor)
         print("Health:", str(player.health) + "/" + str(player.maxhealth))
         climbing = input("Press I to access inventory\n")
         if climbing == "i":
             from invmenu import inventory
             inventory()
+        elif floor >= 3:
+            break
         else:
             level = floors[random.randint(0, len(floors) - 1)]
             print("\n\n\n\n\n")
             level()
             time.sleep(para.Mwait)
             print("\n\n\n\n\n")
+            floor += 1
 
     if player.health < 1:
         print("Unfortunately, your wounds have become too much to bear")

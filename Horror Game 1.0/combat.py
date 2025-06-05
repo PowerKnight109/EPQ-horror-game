@@ -53,7 +53,7 @@ def fight(enemy):
             player.hunger = 100
         print("\n\n")
         print("You have", str(player.health)+"/"+str(player.maxhealth), "health")
-        time.sleep(para.Mwait)
+        time.sleep(para.Swait)
         print("Will you:")
         #time.sleep(para.Swait)
         print("A: FIGHT")
@@ -116,7 +116,8 @@ def fight(enemy):
 
 
         time.sleep(para.Mwait)
-        print(attack(enemy, player))
+        if enemy.health > 0:
+            attack(enemy, player)
 
 
     if enemy.health <= 0:
@@ -128,15 +129,17 @@ def fight(enemy):
         time.sleep(para.Swait)
         print("You gained", enemy.xp, "Experience Points.")
         player.xp += enemy.xp
-        while player.xp > player.mxp:
+        while player.xp >= player.mxp:
             print("You feel yourself becoming stronger!")
             time.sleep(para.Mwait)
             print("[Max Health +1]")
+            print("[Health +3]")
             print("[Attack +1]")
             print("[Luck +2]")
 
             player.atk += 1
             player.maxhealth += 1
+            player.health += para.smallhprestore
             player.luck += 1
             player.xp -= player.mxp
             player.mxp += 25
