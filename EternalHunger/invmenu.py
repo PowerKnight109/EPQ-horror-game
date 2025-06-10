@@ -1,4 +1,7 @@
+import time
+from parameters import para
 from character_sheets import player
+
 words = ["meat", "pills", "bandages", "effigy", "charm", "steroids", "rabbitfoot", "acid", "bullets", "gun"]
 def inventory():
     while True:
@@ -15,9 +18,6 @@ def inventory():
             break
 #
         else:
-            from parameters import para
-            import time
-
             def food():
                 print("meat")
                 time.sleep(para.Swait)

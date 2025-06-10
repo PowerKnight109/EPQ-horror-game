@@ -5,6 +5,7 @@
 
 import time
 from character_sheets import player, leader
+from invmenu import inventory
 from parameters import para
 from combat import fight
 import random
@@ -148,7 +149,6 @@ def ZathKopchyla():
         print("Health:", str(player.health) + "/" + str(player.maxhealth))
         climbing = input("Press I to access inventory\n")
         if climbing == "i":
-            from invmenu import inventory
             inventory()
         elif floor >= 3:
             break

@@ -8,6 +8,8 @@ import time
 import random
 from character_sheets import player
 from parameters import para, misc
+import math
+from invmenu import inventory
 
 
 def fight(enemy):
@@ -27,8 +29,8 @@ def fight(enemy):
                 #check for critical hit
                 print("[Critical Blow!]")
                 time.sleep(para.Mwait)
-                print(assailant.name, "dealt", assailant.atk+2, "points of damage!")
-                victim.health -= assailant.atk+2
+                print(assailant.name, "dealt", str(math.ceil(1+(1.5*assailant.atk))), "points of damage!")
+                victim.health -= math.ceil(1+(1.5*assailant.atk))
 
             else:
                 print(assailant.name, "dealt", assailant.atk, "points of damage!")
@@ -92,7 +94,6 @@ def fight(enemy):
 
         elif action == "C":
             x = player
-            from invmenu import inventory
             inventory()
             if player == x:
                 continue
@@ -135,7 +136,7 @@ def fight(enemy):
             print("[Max Health +1]")
             print("[Health +3]")
             print("[Attack +1]")
-            print("[Luck +2]")
+            print("[Luck +1]")
 
             player.atk += 1
             player.maxhealth += 1
