@@ -1,4 +1,4 @@
-from character_sheets import player, zombie, slime, shadow, batter, sorrow, gnasher, stalker, digger, raven, skinwalker, doctor, mimic
+from character_sheets import player, zombie, slime, shadow, batter, sorrow, gnasher, stalker, digger, raven, skinwalker, doctor, mimic, hunter
 from parameters import para, misc, stalking
 import time
 import random
@@ -53,33 +53,45 @@ class eldritchvisionsc(encounters):
         print("[Sanity -"+str(para.smallchange)+"]")
         player.sanity -= para.smallchange
 
-class foodfindc(encounters):
-    def __init__(self):
-        super().__init__(1, 101, "meat")
-    def text(self):
-        print("You found some meat!")
-        player.inv["meat"] += (1+player.luck)
+# class foodfindc(encounters):
+#     def __init__(self):
+#         super().__init__(1, 101, "meat")
+#     def text(self):
+#         print("You found some meat!")
+#         player.inv["meat"] += (1+player.luck)
+#
+# class pillfindc(encounters):
+#     def __init__(self):
+#         super().__init__(1, 101, "pillfind")
+#     def text(self):
+#         print("You found some pills!")
+#         player.inv["pills"] += 1
+#
+#
+# class bandagefindc(encounters):
+#     def __init__(self):
+#         super().__init__(1, 101, "bandages")
+#     def text(self):
+#         print("You found some bandages!")
+#         player.inv["bandages"] += 1
 
-class pillfindc(encounters):
+class essentialsc(encounters):
     def __init__(self):
-        super().__init__(1, 101, "pillfind")
+        super().__init__(1, 101, "essentials")
     def text(self):
-        print("You found some pills!")
-        player.inv["pills"] += (1+player.luck)
+        essentials = ["meat", "pills", "bandages"]
+        x = random.randint(0, 2)
+        print("You found some", essentials[x]+"!")
+        player.inv[essentials[x]] += 1
 
-class bandagefindc(encounters):
-    def __init__(self):
-        super().__init__(1, 101, "bandages")
-    def text(self):
-        print("You found some bandages!")
-        player.inv["bandages"] += (1+player.luck)
+
 
 class goldfindc(encounters):
     def __init__(self):
         super().__init__(1, 101, "goldfind")
     def text(self):
         print("You found some gold!")
-        player.gold += (1+player.luck)
+        player.gold += (1)
 
 class itemfindc(encounters):
     def __init__(self):
@@ -167,7 +179,7 @@ class zombiec(encounters):
         if battle == True:
             if fight(zombie) == True:
                 zombie.health = zombie.maxhealth
-                x = input("The unmoving body of the zombie lies before you\nA: Consume\nB: Loot\nC: Leave\n").lower()
+                x = input("The unmoving body of the husk lies before you\nA: Consume\nB: Loot\nC: Leave\n").lower()
                 if x == "c":
                     print("You move on")
                 else:
@@ -175,7 +187,7 @@ class zombiec(encounters):
                         if x == "b":
                             print("You loot the body for supplies")
                             time.sleep(para.Mwait)
-                            new = random.randint(0, len(words) - 5)
+                            new = random.randint(0, len(words)-1)
                             print("You found some", words[new])
                             player.inv[words[new]] += 1
 
@@ -222,7 +234,7 @@ class lootcorpsec(encounters):
                 if choice == "a":
                     print("You loot the corpse for items")
                     time.sleep(para.Mwait)
-                    new = random.randint(0, len(words)-5)
+                    new = random.randint(0, len(words)-1)
                     print("You found some", words[new])
                     player.inv[words[new]] +=1
                     # time.sleep(para.Mwait)
@@ -240,8 +252,6 @@ class lootcorpsec(encounters):
                     time.sleep(para.Mwait)
                     x = player.hunger
                     player.hunger += para.largerestore
-                    if player.hunger > 100:
-                        player.hunger = 100
                     print("[Hunger +"+str(player.hunger - x)+"]")
                     print("[Sanity -"+str(para.largechange)+"]")
                     player.sanity -= para.largechange
@@ -556,7 +566,7 @@ class batterc(encounters):
                             print("You loot the corpse for supplies")
                             from invmenu import words
                             time.sleep(para.Mwait)
-                            new = random.randint(0, len(words) - 5)
+                            new = random.randint(0, len(words)-1)
                             print("You found some", words[new])
                             player.inv[words[new]] += 1
 
@@ -681,7 +691,7 @@ class gnasherc(encounters):
                         break
                     else:
                         print("You don't have enough gold")
-                        continue
+
                 elif throw == "b":
                     from invmenu import words
                     while True:
@@ -692,7 +702,7 @@ class gnasherc(encounters):
                                 hasitems = True
 
                         if hasitems == True:
-                            garbage = input("Type the item you want to throw").lower
+                            garbage = input("Type the name of the item you want to throw\n").lower
                             if garbage in player.inv:
                                 print("You throw the", garbage, "at some empty bottles lined up on a nearby window")
                                 time.sleep(para.Mwait)
@@ -707,7 +717,7 @@ class gnasherc(encounters):
                                 break
                         else:
                             print("You have no items to throw")
-                        break
+
 
                 else:
                     print("You throw yourself into some nearby boxes, which topple down around you")
@@ -720,6 +730,7 @@ class gnasherc(encounters):
                     player.health -= 4
                     print("You can barely endure the pain in your ribs as you see the monster preparing another charge attack")
                     combat = True
+                    break
 
         elif x == "d":
             print("You slowly creep by the creature, being careful as to make as little noise as possible")
@@ -1448,7 +1459,7 @@ class muggingc(encounters):
             for i in range(len(words)):
                 if player.inv[words[i]] > 0:
                     hasitems = True
-            if hasitems == False:
+            if not hasitems:
                 print("You're really telling me ya don't have ANYTHING on you?")
                 time.sleep(para.Mwait)
                 print("'That's fine, there's still one other way you can pay us...'")
@@ -1620,7 +1631,7 @@ class doctorc(encounters):
                             print("You loot the doctor's corpse")
                             from invmenu import words
                             time.sleep(para.Mwait)
-                            new = random.randint(0, len(words) - 5)
+                            new = random.randint(0, len(words)-1)
                             print("You found some", words[new])
                             player.inv[words[new]] += 1
 
@@ -1843,11 +1854,158 @@ class mirrorc(encounters):
             print("[Sanity -" + str(para.smallchange) + "]")
             player.sanity -= para.smallchange
 
-# class hunterc(encounters):
-#     def __init__(self):
-#         super().__init__(20, 101, "hunter")
-#     def text(self):
-#         print("Combat encounter: hunter")
+class hunterc(encounters):
+    def __init__(self):
+        super().__init__(15, 101, "hunter")
+    def text(self):
+        print("A deafening bang echoes down the alleyway, ringing in your ears")
+        time.sleep(para.Mwait)
+        print("You turn around and see what seems to be a man wearing a deer head reloading his rifle, spewing smoke into the surroundings.")
+        time.sleep(para.Lwait)
+        print("He finishes reloading and once again points his gun at his target, which you realise with horror- is you.")
+        time.sleep(para.Mwait)
+        x = input("A: Fight\nB: Run away\nC: Zig-zag away\nD: find cover\nE: Dodge roll\n").lower()
+        brawl = False
+        if x == "a":
+            print("You charge towards the deerman, but he fires his rifle before you can reach him!")
+            time.sleep(para.Mwait)
+            print("Your attempted assault has left you wide open to be hit, and the bullet lands a clear hit on your shoulder")
+            time.sleep(para.Mwait)
+            print("An explosion of gore erupts from your shoulder, as you are driven back in shock")
+            print("[Health -"+str(hunter.atk)+"]")
+            player.health -= hunter.atk
+            time.sleep(para.Mwait)
+            print("However, you don't have time to worry about your shoulder, as the figure has started reloading his gun")
+            print("Seizing the opportunity, you run in to attack!")
+            brawl = True
+
+        elif x == "b":
+            print("You attempt to run away from the man")
+            time.sleep(para.Mwait)
+            print("However, by fleeing away you give the hunter a clean shot at you!")
+            time.sleep(para.Mwait)
+            print("Another deafening boom rings out, followed by a searing pain in your legs as you fall to the ground")
+            time.sleep(para.Swait)
+            print("[Health -" + str(hunter.atk) + "]")
+            player.health -= hunter.atk
+            time.sleep(para.Mwait)
+            print("The smoke emitted from the gun obscures your vision, but you can hear footsteps approaching you from behind")
+            time.sleep(para.Mwait)
+            y = input("A: Keep fleeing\nB: Hide\n").lower()
+            if y == "a":
+                print("Unable to move your legs, you frantically pull yourself along the ground, terror filling your mind")
+                time.sleep(para.Mwait)
+                if player.health <= hunter.atk:
+                    print("However, your heart drops when you feel a long metal object poke the back of your head")
+                    time.sleep(para.Mwait)
+                    print("The sound of the explosion ruptures your eardrums, but you are unable to think about that for now")
+                    time.sleep(para.Mwait)
+                    print("In fact, you are unable to think about anything at all.")
+                    time.sleep(para.Mwait)
+                    print("The last thing you feel is an agonising pain in your head, before it bursts into a million pieces")
+                    time.sleep(para.Mwait)
+                    print("[GAME OVER]")
+                    player.health -= hunter.atk
+                else:
+                    print("However, your progress is halted as another shot rings out, mutilating your arm")
+                    time.sleep(para.Mwait)
+                    print("Unable to retreat any further, you are forced to face the threat before you")
+                    brawl = True
+
+            elif y == "b":
+                print("Taking advantage of the smoke in the air, you frantically scan the area looking for a place to hide")
+                time.sleep(para.Mwait)
+                print("Luckily, you spot a pile of corpses, and you are barely able to pull yourself into them before the deerman arrives")
+                time.sleep(para.Mwait)
+                print("The man stands there, seemingly searching for you as you remain covered in the bodies")
+                time.sleep(para.Mwait)
+                print("The foul stench of rotting corpses is unbearable, and you notice they are all riddled with bulletholes.")
+                time.sleep(para.Swait)
+                print("[Sanity -"+str(para.smallchange)+"]")
+                player.sanity -= para.smallchange
+                print("Right when it seems like he's about to leave, he turns around and fires a final shot into the pile of corpses")
+                time.sleep(para.Mwait)
+                print("The shockwave of the bullet reverberates through you, but you are luckily unharmed")
+                time.sleep(para.Mwait)
+                print("Not long after, he leaves")
+                print("And so do you")
+
+        elif x == "c":
+            print("You attempt to run away from the creature, taking a zig-zag pattern to avoid being shot")
+            time.sleep(para.Mwait)
+            print("Seeing your escape, the monster releases another shot at you")
+            time.sleep(para.Mwait)
+            if random.randint(1, 100) + player.luck >= 25:
+                print("However, the bullet shoots past you, and you manage to make your escape")
+                time.sleep(para.Mwait)
+            else:
+                print("Despite your best efforts to evade it, the bullet pierces through your shoulder, sending pain shooting through your body")
+                time.sleep(para.Mwait)
+                print("In spite of the pain, you grit your teeth and push on, making your escape before the man can reload his gun again.")
+                time.sleep(para.Mwait)
+                print("[Health -" + str(hunter.atk) + "]")
+                player.health -= hunter.atk
+            print("[Hunger -"+str(para.smallchange)+"]")
+            player.hunger -= para.smallchange
+
+        elif x == "d":
+            print("Desperate to not be in the bullets path, you duck behind a fence as the gunshot rings out")
+            time.sleep(para.Mwait)
+            print("The force of the shot causes the fence to splinter into a million pieces, however you are unharmed")
+            time.sleep(para.Mwait)
+            print("Before the man can reload again, you quickly dash around a corner, pressing your back against the wall")
+            time.sleep(para.Mwait)
+            print("You hear boots clapping against the pavement as the hunter approaches your hiding position")
+            time.sleep(para.Mwait)
+            corner = input("A: Attack\nB: Escape\n").lower()
+            if corner == "a":
+                print("Readying yourself, you ambush the creature as soon as it turns the corner!")
+                brawl = True
+
+            elif corner == "b":
+                print("You manage to escape before the monster can find you again")
+
+        elif x == "e":
+            print("You throw yourself forwards, hoping to dodge-roll out of the way of the creature's attack")
+            time.sleep(para.Mwait)
+            print("Unfortunately, you soon find that dodge-rolls are a lot harder to perform in real life than in a game, as you land on the ground with a thud")
+            time.sleep(para.Mwait)
+            print("However, your attempt was still able to get you clear of the bullet's path!")
+            time.sleep(para.Mwait)
+            print("Drawing your dagger, you attack the hunter before it can reload it's gun again!")
+            brawl = True
+
+
+
+
+
+
+        if brawl == True:
+            if fight(hunter):
+                x = input("The body of the hunter lies before you\nA: Consume\nB: Loot for items\nC: Steal gun\nD: leave\n").lower()
+                if x == "a":
+                    print("You draw your dagger and begin to carve out chunks of flesh to consume")
+                    time.sleep(para.Mwait)
+                    print("It's a fitting end for such a creature")
+                    time.sleep(para.Mwait)
+                    print("Though the knowledge that it may have once been human still haunts you")
+                    print("[Hunger +"+str(para.largerestore)+"]")
+                    player.hunger += para.largerestore
+                    print("[Sanity -"+str(para.largechange)+"]")
+                    player.sanity -= para.largechange
+
+                elif x == "b":
+                    print("You loot the corpse for items")
+                    new = random.randint(0, len(words)-1)
+                    print("You found some", words[new])
+                    player.inv[words[new]] += 1
+
+                elif x == "c":
+                    print("You took the hunter's rifle")
+                    player.gun = True
+                    player.inv["bullets"] = 3
+                    words.append("bullets")
+
 
 class mimicc(encounters):
     def __init__(self):
@@ -2000,6 +2158,11 @@ class saviorc(encounters):
                 time.sleep(para.Mwait)
                 print("With a terrified expression on their face, the survivor flees!")
 
+        else:
+            print("You run away, trying your best to ignore the screams which ring out from behind you")
+            print("[Sanity -"+str(para.largechange)+"]")
+            player.sanity -= para.largechange
+
 # class amalgamc(encounters):
 #     def __init__(self):
 #         super().__init__(35, 101, "amalgam")
@@ -2064,7 +2227,7 @@ class skinwalkerc(encounters):
     def __init__(self):
         super().__init__(30, 101, "skinwalker")
     def text(self):
-        print("Combat encounter: skinwalker")
+        fight(skinwalker)
 
 # class HADc(encounters):
 #     def __init__(self):
@@ -2084,9 +2247,7 @@ def stalk5():
         time.sleep(para.Mwait)
         if random.randint(1, 100) + player.luck < 50:
             print("But there was no-one there")
-            time.sleep(para.Swait)
-            print("[Sanity -= 20]")
-            player.sanity -= 20
+            stalking.switch = False
             stalking.counter = 3
         else:
             print("You see a all man clutching a knife in his hands grinning back at you")
@@ -2101,22 +2262,21 @@ def stalk5():
                     player.sanity -= para.largechange
                     print("[Sanity -" + str(para.largechange) + "]")
 
-            stalking.counter = 0
-            stalking.switch = False
+        stalking.counter = 0
+        stalking.switch = False
     else:
         print("You're probably just imagining it, right?")
         time.sleep(para.Swait)
-        print("[Sanity -20]")
-        player.sanity -= 20
         stalking.counter = 3
 
 
 flavour = flavourc()
 Nsaneflavour = Nsaneflavourc()
 eldritchvisions = eldritchvisionsc()
-foodfind = foodfindc()
-pillfind = pillfindc()
-bandagefind = bandagefindc()
+# foodfind = foodfindc()
+# pillfind = pillfindc()
+# bandagefind = bandagefindc()
+essentials = essentialsc()
 goldfind = goldfindc()
 itemfind = itemfindc()
 stargaze = stargazec()
@@ -2148,7 +2308,7 @@ witch = witchc()
 #altar = altarc()
 #ecrawler = crawlerc()
 mirror = mirrorc()
-#ehunter = hunterc()
+ehunter = hunterc()
 emimic = mimicc()
 lore3 = lore3c()
 #trap = trapc()
@@ -2167,7 +2327,7 @@ eskinwalker = skinwalkerc()
 #HAD = HADc()
 
 #encounters = different events which can occur
-eventable = [flavour, Nsaneflavour, eldritchvisions, foodfind, bandagefind, pillfind, goldfind, itemfind, stargaze, eslime, ezombie, eshadow, lootcorpse, lore1, shrine, konami, deersac, drink, ebatter, egnasher, esorrow, tunnelchase, shop, lore2, eraven, estalker,  blackcat, rest, mugging, edoctor, sacrifice, mirror, emimic, witch, lore3, gods_calling, holes, savior, eskinwalker]
+eventable = [flavour, Nsaneflavour, eldritchvisions, essentials, goldfind, itemfind, stargaze, eslime, ezombie, eshadow, lootcorpse, lore1, shrine, konami, deersac, drink, ebatter, egnasher, esorrow, tunnelchase, shop, lore2, eraven, estalker,  blackcat, rest, mugging, edoctor, sacrifice, mirror, ehunter, emimic, witch, lore3, gods_calling, holes, savior, eskinwalker]
 last = ""
 
 def encounterpick(event):

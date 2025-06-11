@@ -1,13 +1,7 @@
 from encounters import eventable
 
 
-def look(e):
-    return e.diff
+man = ["dum", "dom"]
 
-
-eventable.sort(key=look)
-for i in range(len(eventable)):
-    print(str(i) + ":", eventable[i].name)
-
-
-print(len(eventable))
+if "dum" not in man:
+    print("a")

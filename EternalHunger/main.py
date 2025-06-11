@@ -1,8 +1,7 @@
 from Horror_game import intro, gameloop, gamend
 import time
 def main():
-
-    #intro()
+    intro()
     gameloop()
     time.sleep(1.5)
     gamend()

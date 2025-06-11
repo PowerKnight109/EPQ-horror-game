@@ -2,7 +2,7 @@ import time
 from parameters import para
 from character_sheets import player
 
-words = ["meat", "pills", "bandages", "effigy", "charm", "steroids", "rabbitfoot", "acid", "bullets", "gun"]
+words = ["meat", "pills", "bandages", "charm", "steroids"]
 def inventory():
     while True:
         print("You have", player.gold, "gold")
@@ -127,8 +127,16 @@ def inventory():
                     print("[ATK +", str(para.smallschange) + "]\n")
                     player.inv["steroids"] -= 1
 
-            selectlist = [food, pill, bandage, effigy, charm, roids]
-            print("Please type the name of the item you would like to view")
+            def bullets():
+                print("bullets")
+                time.sleep(para.Swait)
+                print("Can be fired in battle to deal", str(player.atk+2), "damage")
+                print("Cannot be used outside of combat")
+                time.sleep(para.Lwait)
+
+
+            selectlist = [food, pill, bandage, charm, roids, bullets]
+            print("\nPlease type the name of the item you would like to view")
             itemselect = input().lower()
 
             if itemselect in words:

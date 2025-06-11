@@ -58,36 +58,26 @@ def fight(enemy):
         time.sleep(para.Swait)
         print("Will you:")
         #time.sleep(para.Swait)
-        print("A: FIGHT")
-        print("B: CHECK")
+        print("A: CHECK")
+        print("B: FIGHT")
         print("C: ITEM")
-        action = input("D: FLEE\n")
+        print("D: FLEE")
+        if player.gun == True:
+            print("E: GUN")
+        action = input().upper()
         action = action.upper()
 
-        if action == "A":
+        if action == "B":
             print(attack(player, enemy))
 
-        elif action == "B":
-            print("CHECK")
-            #print("type: action")
-            print("reveal the stats of the enemy, as well as some additional information about it.")
-            time.sleep(para.Mwait)
-            print("Do you use check?")
-            #time.sleep(para.Mwait)
-            #print("")
-            print("A: Yes")
-            print("B: No")
-            confirm = input("")
-            confirm = confirm.upper()
-            if confirm == "A":
+        elif action == "A":
                 print(enemy.name)
                 time.sleep(para.Mwait)
-                print("Health:", str(enemy.health) + "/" + str(enemy.maxhealth), "\nAttack:", enemy.atk, "\nAccuracy:", enemy.accuracy)
+                print("Health:", str(enemy.health) + "/" + str(enemy.maxhealth), "\nAttack:", enemy.atk, "\nAccuracy:", str(enemy.accuracy+enemy.luck))
                 time.sleep(3)
                 print(enemy.checkdesc)
                 time.sleep(para.Lwait)
                 print("")
-            else:
                 continue
         # if special(pmoves) == True:
         #   continue
@@ -115,10 +105,47 @@ def fight(enemy):
                 peace = True
                 break
 
+        elif action == "E":
+            if player.gun == True and player.inv["bullets"] > 0:
+                print("You have", player.inv["bullets"], "ammo")
+                print("Firing the gun will deal", str(player.atk + 2), "damage")
+                time.sleep(para.Mwait)
+                shoot = input("Fire the gun?\nA: Yes\nB: No\n").lower()
+                if shoot == "a":
+                    print("You fired the gun!")
+                    time.sleep(para.Mwait)
+                    print(enemy.name, "took", str(player.atk + 2), "points of damage!")
+                    enemy.health -= (player.atk + 2)
+                    player.inv["bullets"] -= 1
+                else:
+                    continue
+            else:
+                if player.gun == False:
+                    print("You shouldn't be here")
+                else:
+                    print("You don't have enough ammo!")
+                continue
+
+        else:
+            print("Incorrect input! Please type the corresponding letter for the action you want to take")
+            continue
+
+
+
+
+
+
+
+
+
+
 
         time.sleep(para.Mwait)
         if enemy.health > 0:
-            attack(enemy, player)
+            if enemy.name == "Hunter" and turns%2 == 0:
+                print("The hunter is reloading their gun")
+            else:
+                attack(enemy, player)
 
 
     if enemy.health <= 0:

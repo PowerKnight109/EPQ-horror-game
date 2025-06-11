@@ -15,6 +15,8 @@ def intro():
     time.sleep(para.Mwait)
     print("Corpses and strange runes are strewn about")
     time.sleep(para.Mwait)
+    # print("You find a dagger on the ground next to a note, which reads 'ZATH-KOPCHYLA CANNOT BE SUMMONED'")
+    # time.sleep(para.Mwait)
     print("You pick up a dagger from one of the corpses and step outside")
     time.sleep(para.Mwait)
     input("Press enter to take a step forward\n")
@@ -91,11 +93,10 @@ def gameloop():
 
             elif debug == "e":
                 while True:
-                    x = input("A: Max Health\nB: Health\nC: Hunger\nD: Sanity\nE: Attack\nF: Luck\nG: Speed\nH: Accuracy\nI: XP\nJ: Gold\nK: Meat\nL: Pills\nM: Bandages\nN: Charm\nO: Steroids\nP: Distance\nQ: Difficulty\nR: Go Back\nWhich value would you like to adjust?\n").lower()
-
-                    if x == "r":
+                    x = input("A: Max Health\nB: Health\nC: Hunger\nD: Sanity\nE: Attack\nF: Luck\nG: Speed\nH: Accuracy\nI: XP\nJ: Gold\nK: Meat\nL: Pills\nM: Bandages\nN: Charm\nO: Steroids\nP: Distance\nQ: Difficulty\nR: Bullets\nS: Gun\nT: Go Back\nWhich value would you like to adjust?\n").lower()
+                    #Yes, I know the code here is horrible, but it
+                    if x == "t":
                         break
-
                     else:
                         number = int(input("What number would you like to set the value to?\n"))
                         if x == "a":
@@ -132,6 +133,13 @@ def gameloop():
                             misc.distance = number
                         elif x == "q":
                             misc.difficulty = number
+                        elif x == "r":
+                            if "bullets" not in words:
+                                words.append("bullets")
+                            player.inv["bullets"] = number
+                        elif x == "s":
+                            print("Gun has been added")
+                            player.gun = True
 
 
 
