@@ -1102,7 +1102,7 @@ class lore2c(encounters):
                     print("\n'This is most likely not cause for concern, though I decided reported it to Vexon Industries' head supervisor as a precaution'")
                    # time.sleep(para.Mwait)
 
-                if x == "c":
+                if contents == "c":
                     print("'Potential risks of Zathene energy'")
 #                    time.sleep(para.Mwait)
                     print("'While many have been rejoicing the discovery of Zathene energy and resolution to Arkham's power crisis, other's have remained skeptical, questioning the safety of such a new and unknown power source'")
