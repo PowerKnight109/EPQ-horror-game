@@ -190,3 +190,6 @@ def gamend():
 #
 
     print("Final score:", misc.distance)
+    time.sleep(3)
+    print("Application will close in 5 seconds")
+    time.sleep(5)
