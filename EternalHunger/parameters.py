@@ -1,15 +1,16 @@
 class misc:
-    def __init__(self, hasgun, stalking, distance, difficulty):
+    def __init__(self, hasgun, stalking, distance, difficulty, credit):
         self.hasgun = hasgun
         self.stalking = stalking
         self.distance = distance
         self.difficulty = difficulty
+        self.credit = credit
 
 #hasgun = Determines whether to add ammo to the itempool
 #stalking = Determines whether the player is being stalked
 #distance = The players current distance and difficulty
 
-misc = misc(False, False, 0, 1)
+misc = misc(False, False, 0, 1, 0)
 
 
 

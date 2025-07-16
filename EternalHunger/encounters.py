@@ -1,4 +1,4 @@
-from character_sheets import player, zombie, slime, shadow, batter, sorrow, gnasher, stalker, digger, raven, skinwalker, doctor, mimic, hunter
+from character_sheets import player, zombie, slime, shadow, batter, sorrow, gnasher, stalker, digger, raven, skinwalker, doctor, mimic, hunter, butcher
 from parameters import para, misc, stalking
 import time
 import random
@@ -618,13 +618,15 @@ class shopc(encounters):
                 print("type the name of the item you want to purchase")
                 browse = input().lower()
                 from invmenu import words
-                prices = [1, 2, 2, 0, 3, 5]
+                prices = [1, 2, 2, 0, 5]
                 if browse in words and prices[words.index(browse)] > player.gold:
-                    #print("YoU DoN't HaVe EnOuGhH!")
-                    print("ThInK yOu CaN cHeAt MeEe? YoUu lAcK tHe CoInN!!!" )
+                    print("YoU DoN't HaVe EnOuGhH!")
+                    time.sleep(para.Lwait)
+                    #print("ThInK yOu CaN cHeAt MeEe? YoUu lAcK tHe CoInN!!!" )
                 elif browse in words:
                     print("You purchased the", browse)
                     print("[Gold -"+str(prices[words.index(browse)])+"]")
+                    time.sleep(para.Mwait)
                     player.gold -= prices[words.index(browse)]
                     player.inv[browse] += 1
                 else:
@@ -918,6 +920,80 @@ class ravenc(encounters):
                         time.sleep(para.Mwait)
                         print("Hunger +"+str(para.smallrestore)+"]")
                         player.hunger += para.smallrestore
+
+class butchershopc(encounters):
+    def __init__(self):
+        super().__init__(15, 101, "butchershop")
+    def text(self):
+        print("You find an old, decrepit butcher's shop which you decide to take refuge in.")
+        time.sleep(para.Mwait)
+        print("Upon entering, you are greeted by a woman sitting at the front counter")
+        time.sleep(para.Mwait)
+        print("Her face is covered in rags that have been sewn over her head, and she is dressed in a bloodstained white coat and apron")
+        time.sleep(para.Mwait)
+        print("She doesn't seem hostile, but there's something offputting about her smile...")
+        time.sleep(para.Lwait)
+        print("\n'Greetings! ^q^ My name's Yi Xi, what can I do for you today?'")
+        time.sleep(para.Mwait)
+        while True:
+            package = input("\nA: Shop\nB: Observe\nC: Leave\n").lower()
+            if package == "a":
+                while True:
+                    print("You have", player.gold, "gold")
+                    for i in range(10):
+                        print("meat(1G)")
+                    deli = input("type the name of the item you would like to purchase\n").lower()
+                    if deli == "meat":
+                        if player.gold > 0:
+                            print("Hope you enjoy! ^q^")
+                            print("[meat +1]")
+                            time.sleep(para.Mwait)
+                            player.inv["meat"] += 1
+                            misc.credit += 1
+                        else:
+                            print("骗子! You think you can try to cheat me?")
+                            time.sleep(para.Lwait)
+                            misc.credit -= 1
+                    else:
+                        break
+
+            elif package == "b":
+                yixi_affection = ["The butcher stares at you hungrily\nYou feel like you're in danger", "You notice the butcher is drooling at the mouth, despite her best attempts to hide it", "The butcher sharpens a particularly large knife\nThe sight of it fills you with unease", "The butcher doesnt seem to stare at you as hungrily as before", "The butcher gives you a friendly smile\nIt seems like you have become a valued customer"]
+                if misc.credit > 4:
+                    print(yixi_affection[4])
+                else:
+                    print(yixi_affection[misc.credit])
+                time.sleep(para.Lwait)
+            elif package == "c":
+                print("You turn to leave")
+                time.sleep(para.Mwait)
+                if random.randint(0,100) + player.luck + (misc.credit*10) >= 50:
+                    print("'谢谢, come again soon!'")
+                else:
+                    print("'Oh you're not going anywhere'")
+                    time.sleep(para.Mwait)
+                    print("The butcher exits the counter and slowly approaches you")
+                    time.sleep(para.Mwait)
+                    print("I can't just let a prime cut of meat go to waste!")
+                    if fight(butcher):
+                        cycle = input("The carcass of the butcher lies on the floor of the shop\nA: Consume\nB: Loot\nC: Leave\n").lower()
+                        if cycle == "a":
+                            print("While you don't want to desecrate a carcass, you also don't want to let the offal go to waste")
+                            time.sleep(para.Mwait)
+                            print("Your desire is bottomless, and you end up eating until you get sick")
+                            time.sleep(para.Mwait)
+                            print("[Sanity -"+str(para.largechange)+"]")
+                            print("[Hunger fully restored]")
+                            player.sanity += para.largechange
+                            player.hunger = 100
+
+                        elif cycle == "b":
+                            print("You loot the butcher's store")
+                            time.sleep(para.Lwait)
+                            print("[Gold+3]\n[Meat+2]")
+                            player.gold += 3
+                            player.meat += 4
+                break
 
 class tunnelchasec(encounters):
     def __init__(self):
@@ -2293,6 +2369,7 @@ ebatter = batterc()
 shop = shopc()
 egnasher = gnasherc()
 esorrow = sorrowc()
+butchershop = butchershopc()
 eraven = ravenc()
 tunnelchase = tunnelchasec()
 lore2 = lore2c()
@@ -2327,7 +2404,7 @@ eskinwalker = skinwalkerc()
 #HAD = HADc()
 
 #encounters = different events which can occur
-eventable = [flavour, Nsaneflavour, eldritchvisions, essentials, goldfind, itemfind, stargaze, eslime, ezombie, eshadow, lootcorpse, lore1, shrine, konami, deersac, drink, ebatter, egnasher, esorrow, tunnelchase, shop, lore2, eraven, estalker,  blackcat, rest, mugging, edoctor, sacrifice, mirror, ehunter, emimic, witch, lore3, gods_calling, holes, savior, eskinwalker]
+eventable = [flavour, Nsaneflavour, eldritchvisions, essentials, goldfind, itemfind, stargaze, eslime, ezombie, eshadow, lootcorpse, lore1, shrine, konami, deersac, drink, ebatter, egnasher, esorrow, butchershop, tunnelchase, shop, lore2, eraven, estalker,  blackcat, rest, mugging, edoctor, sacrifice, mirror, ehunter, emimic, witch, lore3, gods_calling, holes, savior, eskinwalker]
 last = ""
 
 def encounterpick(event):

@@ -58,8 +58,8 @@ def fight(enemy):
         time.sleep(para.Swait)
         print("Will you:")
         #time.sleep(para.Swait)
-        print("A: CHECK")
-        print("B: FIGHT")
+        print("A: FIGHT")
+        print("B: CHECK")
         print("C: ITEM")
         print("D: FLEE")
         if player.gun == True:
@@ -67,10 +67,10 @@ def fight(enemy):
         action = input().upper()
         action = action.upper()
 
-        if action == "B":
+        if action == "A":
             print(attack(player, enemy))
 
-        elif action == "A":
+        elif action == "B":
                 print(enemy.name)
                 time.sleep(para.Mwait)
                 print("Health:", str(enemy.health) + "/" + str(enemy.maxhealth), "\nAttack:", enemy.atk, "\nAccuracy:", str(enemy.accuracy+enemy.luck))

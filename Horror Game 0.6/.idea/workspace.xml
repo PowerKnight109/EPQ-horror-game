@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="Added some more time before it closes" />
+    <list default="true" id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="Fixed a bug where option c for the lore2 event didn't work">
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/character_sheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/character_sheets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/combat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/combat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/encounters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/encounters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,6 +81,7 @@
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.newtemp.executor&quot;: &quot;Run&quot;,
     &quot;Python.parameters.executor&quot;: &quot;Run&quot;,
+    &quot;Python.temp.executor&quot;: &quot;Run&quot;,
     &quot;Python.temp3.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -87,6 +94,35 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\alexa\PycharmProjects\EPQ-horror-game\Horror Game 0.5" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EternalHunger" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../EternalHunger" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../EternalHunger/temp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.temp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -296,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749734621413</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixed a bug where option c for the lore2 event didn't work">
+      <option name="closed" value="true" />
+      <created>1749748002689</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1749748002689</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -324,6 +368,7 @@
     <MESSAGE value="Made several bug fixes" />
     <MESSAGE value="fixed bugs" />
     <MESSAGE value="Added some more time before it closes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some more time before it closes" />
+    <MESSAGE value="Fixed a bug where option c for the lore2 event didn't work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug where option c for the lore2 event didn't work" />
   </component>
 </project>
