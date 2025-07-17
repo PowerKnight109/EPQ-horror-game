@@ -961,6 +961,8 @@ class butchershopc(encounters):
                 yixi_affection = ["The butcher stares at you hungrily\nYou feel like you're in danger", "You notice the butcher is drooling at the mouth, despite her best attempts to hide it", "The butcher sharpens a particularly large knife\nThe sight of it fills you with unease", "The butcher doesnt seem to stare at you as hungrily as before", "The butcher gives you a friendly smile\nIt seems like you have become a valued customer"]
                 if misc.credit > 4:
                     print(yixi_affection[4])
+                elif misc.credit < 0:
+                    print(yixi_affection[0])
                 else:
                     print(yixi_affection[misc.credit])
                 time.sleep(para.Lwait)
