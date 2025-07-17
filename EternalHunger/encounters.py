@@ -950,6 +950,7 @@ class butchershopc(encounters):
                             time.sleep(para.Mwait)
                             player.inv["meat"] += 1
                             misc.credit += 1
+                            player.gold -= 1
                         else:
                             print("骗子! You think you can try to cheat me?")
                             time.sleep(para.Lwait)
@@ -986,7 +987,7 @@ class butchershopc(encounters):
                             time.sleep(para.Mwait)
                             print("[Sanity -"+str(para.largechange)+"]")
                             print("[Hunger fully restored]")
-                            player.sanity += para.largechange
+                            player.sanity -= para.largechange
                             player.hunger = 100
 
                         elif cycle == "b":

@@ -162,13 +162,13 @@ def fight(enemy):
             time.sleep(para.Mwait)
             print("[Max Health +1]")
             print("[Health +3]")
-            print("[Attack +1]")
-            print("[Luck +1]")
+            #print("[Attack +1]")
+            print("[Luck +2]")
 
-            player.atk += 1
+           # player.atk += 1
             player.maxhealth += 1
             player.health += para.smallhprestore
-            player.luck += 1
+            player.luck += 2
             player.xp -= player.mxp
             player.mxp += 25
         return True
