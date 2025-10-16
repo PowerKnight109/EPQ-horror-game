@@ -1773,7 +1773,7 @@ class sacrificec(encounters):
         if x == "b":
             print("It takes all of your mental energy to pull yourself away from the shrine")
             time.sleep(para.Mwait)
-            print("[Sanity -"+para.smallchange+"]")
+            print("[Sanity -"+str(para.smallchange)+"]")
             player.sanity -= para.smallchange
         else:
             while True:
