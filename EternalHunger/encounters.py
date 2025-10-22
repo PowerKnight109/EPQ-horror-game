@@ -923,7 +923,7 @@ class ravenc(encounters):
 
 class butchershopc(encounters):
     def __init__(self):
-        super().__init__(15, 101, "butchershop")
+        super().__init__(7, 101, "butchershop")
     def text(self):
         print("You find an old, decrepit butcher's shop which you decide to take refuge in.")
         time.sleep(para.Mwait)
@@ -1717,7 +1717,7 @@ class doctorc(encounters):
 
 class sacrificec(encounters):
     def __init__(self):
-        super().__init__(15, 101, "sacrifice")
+        super().__init__(7, 101, "sacrifice")
     def text(self):
         #print("Sacrifice health for statboost/lower doom")
         def dud():
@@ -1796,7 +1796,7 @@ class sacrificec(encounters):
 
 class witchc(encounters):
     def __init__(self):
-        super().__init__(20, 101, "witch")
+        super().__init__(15, 101, "witch")
     def text(self):
         #print("Offered a potion which will restore/harm or raise/lower a stat")
         print("You find a rusty shack, tucked away in the alleyways")
@@ -1918,7 +1918,7 @@ class witchc(encounters):
 
 class mirrorc(encounters):
     def __init__(self):
-        super().__init__(17, 101, "mirror")
+        super().__init__(2, 101, "mirror")
     def text(self):
         print("You look in the mirror")
         time.sleep(para.Mwait)
@@ -2148,7 +2148,7 @@ class holesc(encounters):
             print("After what feels like an eternity of agony, you successfully separate it from your hand")
             print("The bright mass of discarded flesh falls to the ground with a splat")
             time.sleep(para.Mwait)
-            print("[Health -"+para.smallschange+"]")
+            print("[Health -"+str(para.smallschange)+"]")
             player.health -= para.smallschange
 
         else:
@@ -2227,9 +2227,9 @@ class saviorc(encounters):
                 print("[Pills +1]")
                 print("[Bandages +1]")
                 player.gold += 2
-                player.meat += 1
-                player.pills += 1
-                player.bandages += 1
+                player.inv["meat"] += 1
+                player.inv["pills"] += 1
+                player.inv["bandages"] += 1
                 time.sleep(para.Lwait)
                 print("However, the survivor's face grows pale as they look upon your face")
                 time.sleep(para.Mwait)
