@@ -1760,7 +1760,7 @@ class sacrificec(encounters):
 
         def bad():
             print("It feels good")
-            print("[Sanity -"+para.smallchange+"]")
+            print("[Sanity -"+str(para.smallchange)+"]")
 
 
         print("You find an altar with a large spike protruding from it")

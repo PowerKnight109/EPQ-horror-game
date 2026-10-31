@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62a1db6e-5159-4674-b7eb-eaf21bb0de0f" name="Changes" comment="Added Yi Xi to the game">
-      <change beforePath="$PROJECT_DIR$/../EternalHunger/character_sheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/character_sheets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/Horror_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/Horror_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/encounters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/encounters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EternalHunger/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../EternalHunger/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

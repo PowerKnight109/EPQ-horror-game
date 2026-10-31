@@ -126,7 +126,7 @@ def gameloop():
                         elif x == "m":
                             player.inv["bandages"] = number
                         elif x == "n":
-                            player.player.inv["charm"] = number
+                            player.inv["charm"] = number
                         elif x == "o":
                             player.inv["steroids"] = number
                         elif x == "p":
